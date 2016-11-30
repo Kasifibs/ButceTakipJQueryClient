@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/itemoperations/ResourceItemOperations.js"></script>
+		<script type="text/javascript" src="js/itemoperations/ItemCommons.js"></script>
+		<script>
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
+			});
+		</script>
+		<style type="text/css">
+			@import "themes/tema.css";
+			@import "themes/bootstrap.min.css";
+			@import "themes/simple-sidebar.css";
+		</style>
+	</head>
+	
+	<body>
+		<div id="titleDiv">
+			<nav class="navbar navbar-full navbar-light bg-faded">
+				<a id="title" class="navbar-brand">BUTCE TAKIP</a>
+			</nav>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div id="sideMenuDiv" class="col-md-4"></div>
+				<div class="col-md-8">
+					<table width="300" border="0" cellpadding="0" cellspacing="2">
+						<tr>
+							<td>Varlık Kalemi:</td>
+							<td><input type="text" class='form-control' id="resItemName" size="30"/></td>
+						</tr>
+						
+						<tr>
+							<td>&nbsp;</td>
+							<td><input type="submit" class='btn-primary' id="saveButton" value="Kaydet"/></td>
+						</tr>
+					</table>
+					
+					<h2>Varlık Kalemleri</h2>
+					
+					<div id="itemTableDiv" style="width: 500px"></div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+
+</html>
