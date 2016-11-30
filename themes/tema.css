@@ -3,12 +3,22 @@
 	background-color: orange;
 }
 
-#titleDiv{
+#title{
 	width: 100%;
 	background-color: #4a4b4c;
+	color:#db621c;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align:center;
 }
 
 #title{
 	color:#db621c;
+}
+
+#itemForm{
+	padding-top:15px;
 }
 
