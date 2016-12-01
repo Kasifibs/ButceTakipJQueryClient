@@ -1,6 +1,6 @@
 
 .vurgulu{
-	background-color: orange;
+	background-color: #f2923e;
 }
 
 #title{
@@ -18,7 +18,20 @@
 	color:#db621c;
 }
 
+#formDiv{
+	margin-top:100px;
+}
+
 #itemForm{
 	padding-top:15px;
 }
+
+#sideMenuDiv{
+	padding-right:0px;
+}
+
+#itemTableDiv{
+	padding-top:15px;
+}
+
 
