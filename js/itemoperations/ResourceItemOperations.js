@@ -1,12 +1,14 @@
 $(document).ready(function() {
-		
-		$('#sideMenuDiv').load('./SideMenuDiv.html');
-		$('#titleDiv').load('./Title.html');
+		$('body').load('./MainTemplate.html', function(){
+				$('#titleDiv').load('./Title.html');
+				$('#sideMenuDiv').load('./SideMenuDiv.html');
+				$('#page-content-wrapper').load('./ItemContentArea.html',function(){$('#formDiv').load('./ItemForm.html');});
+		});
 		
 		//save
 		var saveResourceItemOperation = function(){ saveItemOperation('#resItemName', "http://demo8082322.mockable.io/saveResourceItem"); };
-		var saveResourceItemButton = document.getElementById("saveButton");
-		saveResourceItemButton.addEventListener("click", saveResourceItemOperation);
+		//var saveResourceItemButton = document.getElementById("saveButton");
+		//saveResourceItemButton.addEventListener("click", saveResourceItemOperation);
 		
 		//delete
 		var deleteResourceItemOperation = function(){ 
