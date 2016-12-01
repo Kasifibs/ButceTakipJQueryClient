@@ -86,7 +86,7 @@ var handleTableRowClick = function(nameElementId){
 
 var generateItemTableFromRestResult = function(resultData, itemType){
 
-	var icerik = "<table id='itemTable' class='table' border='1' cellspacing='0'>";
+	var icerik = "<table id='itemTable' class='table table-bordered' border='1' cellspacing='0'>";
 	icerik += "<thead><tr>" +
 	"<th>ID</th>" +
 	"<th>"+itemType+" Adı</th>" +
@@ -99,10 +99,10 @@ var generateItemTableFromRestResult = function(resultData, itemType){
 		icerik += "<td>" + obj.id + "</td>";
 		icerik += "<td>" + obj.name + "</td>";
 		icerik += "<td>";
-		icerik += "<input type='submit' itemId='"+obj.id+"' class='itemDeleteButton' value='Sil'>";
+		icerik += "<input type='submit' itemId='"+obj.id+"' class='itemDeleteButton btn btn-danger' value='Sil'>";
 		icerik += "</td>";
 		icerik += "<td>";
-		icerik += "<input type='submit' itemId='"+obj.id+"' class='itemUpdateButton' value='Güncelle'>";
+		icerik += "<input type='submit' itemId='"+obj.id+"' class='itemUpdateButton btn btn-warning' value='Güncelle'>";
 		icerik += "</td>";
 		icerik += "</tr>";
 	});				
