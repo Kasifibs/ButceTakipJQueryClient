@@ -20,25 +20,27 @@
 	</head>
 	
 	<body>
-		<div id="titleDiv">
-			<h1 id="title">BUTCE TAKIP</h1>
-		</div>
+		<div id="titleDiv"></div>
 		<div class="container-fluid">
 			<div class="row">
-				<div id="sideMenuDiv" class="col-md-3"></div>
+				<div id="sideMenuDiv" class="col-md-2"></div>
 				<div id="listDiv" class="col-md-5">
-					<h2>Varlık Kalemleri</h2>
+					<h2>Varlık Kalemleri Listesi</h2>
 					<div id="itemTableDiv" ></div>
 				</div>
-				<div class="col-md-4">
-					<form id="itemForm" class="form-horizontal">
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Varlık Kalemi</label>
-							<div class="col-sm-10">
+				<div id="formDiv" class="col-md-4">
+					<form id="itemForm">
+						<div class="form-group row">
+							<label class="col-md-2 col-form-label">Varlık Kalemi</label>
+							<div class="col-md-10">
 							  <input type="text" class="form-control" id="resItemName">
 							</div>
 						</div>
-						<button id="saveButton" type="submit" class="btn btn-default">Kaydet</button>
+						<div class="form-group row">
+						  <div class="col-sm-offset-2 col-md-7">
+							<button id="saveButton" type="submit" class="btn btn-primary">Kaydet</button>
+						  </div>
+						</div>
 					</form>
 				</div>
 			</div>
