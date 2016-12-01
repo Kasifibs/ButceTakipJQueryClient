@@ -34,4 +34,11 @@
 	padding-top:15px;
 }
 
+#toolBar{
+	background-color: #4a4b4c;
+}
 
+#menu-toggle{
+	color:#db621c;
+	text-decoration:none;
+}
