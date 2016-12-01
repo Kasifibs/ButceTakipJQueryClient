@@ -1,6 +1,7 @@
 $(document).ready(function() {
 		
 		$('#sideMenuDiv').load('./SideMenuDiv.html');
+		$('#titleDiv').load('./Title.html');
 		
 		//save
 		var saveResourceItemOperation = function(){ saveItemOperation('#resItemName', "http://demo8082322.mockable.io/saveResourceItem"); };
