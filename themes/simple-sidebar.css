@@ -73,6 +73,7 @@
     display: block;
     text-decoration: none;
     color: #db621c;
+	font-size: 130%;
 }
 
 .sidebar-nav li a:hover {
