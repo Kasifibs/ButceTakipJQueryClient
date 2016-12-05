@@ -1,14 +1,6 @@
 $(document).ready(function() {
-		$('body').load('./MainTemplate.html', function(){
-				$('#titleDiv').load('./Title.html');
-				$('#sideMenuDiv').load('./SideMenuDiv.html');
-				$('#page-content-wrapper').load('./ItemContentArea.html',function(){$('#formDiv').load('./ItemForm.html');});
-		});
-		
-		//save
-		var saveResourceItemOperation = function(){ saveItemOperation('#resItemName', "http://demo8082322.mockable.io/saveResourceItem"); };
-		//var saveResourceItemButton = document.getElementById("saveButton");
-		//saveResourceItemButton.addEventListener("click", saveResourceItemOperation);
+	var pathname = window.location.pathname;
+		$('body').load('../common/MainTemplate.html', function(){mainTemplateLoaded();});
 		
 		//delete
 		var deleteResourceItemOperation = function(){ 
