@@ -24,7 +24,9 @@ $(document).ready(function() {
 			itemCommonsObj.retrieveHandlerOperation(resultData, "Varlık Kalemi", deleteResourceItemOperation, updateResourceItemOperation, '#resItemName');
 		}
 		
-		var itemOperationsObj = new ItemOperations(retrieveResourceItemOperation);
+		var formInfo = {itemNameTxt:"Varlık Kalemi"};
+		
+		var itemOperationsObj = new ItemOperations(retrieveResourceItemOperation, formInfo);
 		itemOperationsObj.loadTemplates();
 	}
 );

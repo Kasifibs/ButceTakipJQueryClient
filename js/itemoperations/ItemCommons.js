@@ -3,7 +3,7 @@ var ItemCommons = function(){
 	var that = this;
 	
 	this.reloadFunction = function(){
-		//location.reload();
+		location.reload();
 	}
 
 	this.saveItemOperation = function(nameElementId, restUrl){

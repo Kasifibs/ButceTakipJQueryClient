@@ -1,11 +1,12 @@
-var ItemOperations = function(retrieveItems){
+var ItemOperations = function(retrieveItems, formInfoObj){
 	
 	var that = this;
 	this.retrieveItemsOperation = retrieveItems;
+	this.formInfo = formInfoObj;
 	
 	var mainTemplateObj = new MainTemplate();
 	var itemCommonsObj = new ItemCommons();
-	var itemFormObj = new ItemForm(itemCommonsObj);
+	var itemFormObj = new ItemForm(itemCommonsObj, that.formInfo);
 	var that = this;
 	
 	this.itemContentAreaLoaded = function(){
