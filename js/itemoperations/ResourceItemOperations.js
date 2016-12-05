@@ -21,7 +21,8 @@ $(document).ready(function() {
 			itemCommonsObj.retrieveItemsOperation("http://demo8082322.mockable.io/getResourceItems", retriveResourceItemHandlerOperation);
 		}
 		var retriveResourceItemHandlerOperation = function(resultData){
-			itemCommonsObj.retrieveHandlerOperation(resultData, "Varlık Kalemi", deleteResourceItemOperation, updateResourceItemOperation, '#resItemName');
+			var tableItemSpecificInfo = {header:"Varlık Kalemi Listesi",columnName:"Varlık Kalemi"};
+			itemCommonsObj.retrieveHandlerOperation(resultData, tableItemSpecificInfo, deleteResourceItemOperation, updateResourceItemOperation, '#resItemName');
 		}
 		
 		var formInfo = {itemNameTxt:"Varlık Kalemi"};

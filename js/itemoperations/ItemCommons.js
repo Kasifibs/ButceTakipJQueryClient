@@ -56,9 +56,9 @@ var ItemCommons = function(){
 		);
 	}
 			
-	this.retrieveHandlerOperation = function(resultData, tableHeaderName, deleteOperation, updateOperation, nameElementId){
+	this.retrieveHandlerOperation = function(resultData, tableItemSpecificInfo, deleteOperation, updateOperation, nameElementId){
 		
-		var generatedTable = that.generateItemTableFromRestResult(resultData, tableHeaderName);
+		var generatedTable = that.generateItemTableFromRestResult(resultData, tableItemSpecificInfo);
 		var insertOp = $("#itemTableDiv").append(generatedTable);
 		insertOp.ready(function(){
 				$(".itemDeleteButton").click(deleteOperation);								
@@ -88,12 +88,13 @@ var ItemCommons = function(){
 		);
 	}
 
-	this.generateItemTableFromRestResult = function(resultData, itemType){
+	this.generateItemTableFromRestResult = function(resultData, tableItemSpecificInfo){
 
-		var icerik = "<table id='itemTable' class='table table-bordered' border='1' cellspacing='0'>";
+		var icerik = "<h2>" + tableItemSpecificInfo.header + "</h2>" +
+		"<table id='itemTable' class='table table-bordered' border='1' cellspacing='0'>";
 		icerik += "<thead><tr>" +
 		"<th>ID</th>" +
-		"<th>"+itemType+" Adı</th>" +
+		"<th>"+tableItemSpecificInfo.columnName+" Adı</th>" +
 		"<th colspan='2'>İşlemler</th>" +
 		"<tr></thead>" +
 		"<tbody>";
