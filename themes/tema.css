@@ -42,3 +42,18 @@
 	color:#db621c;
 	text-decoration:none;
 }
+
+#loginFormDiv{
+	margin-right:15px;
+	margin-top:15px;
+	margin-bottom:15px;
+	margin-left:15px;
+	border-style: solid;
+	border-radius: 30px;
+	border-color: #4a4b4c;
+	border-width: 5px;
+}
+
+#loginFormWrapper{
+	
+}

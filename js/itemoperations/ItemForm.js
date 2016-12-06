@@ -6,7 +6,7 @@ var ItemForm = function(itemCommonsObj, formInfoObj){
 	
 	this.itemFormLoaded = function(){
 		//save
-		var saveResourceItemOperation = function(){ that.itemCommons.saveItemOperation('#resItemName', "http://demo8082322.mockable.io/saveResourceItem"); };
+		var saveResourceItemOperation = function(){ that.itemCommons.saveItemOperation('#itemNameInput', "http://demo8082322.mockable.io/saveResourceItem"); };
 		var saveResourceItemButton = document.getElementById("saveButton");
 		saveResourceItemButton.addEventListener("click", saveResourceItemOperation);
 		

@@ -12,7 +12,7 @@ $(document).ready(function() {
 		var updateResourceItemOperation = function(){
 			var id =  $(this).attr('itemId');
 			var itemToUpdate = {"id":id,
-								"name":$('#resItemName').val()};
+								"name":$('#itemNameInput').val()};
 			itemCommonsObj.updateItemOperation(itemToUpdate, "http://demo8082322.mockable.io/updateResourceItem");
 		};	
 		
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		}
 		var retriveResourceItemHandlerOperation = function(resultData){
 			var tableItemSpecificInfo = {header:"Varlık Kalemi Listesi",columnName:"Varlık Kalemi"};
-			itemCommonsObj.retrieveHandlerOperation(resultData, tableItemSpecificInfo, deleteResourceItemOperation, updateResourceItemOperation, '#resItemName');
+			itemCommonsObj.retrieveHandlerOperation(resultData, tableItemSpecificInfo, deleteResourceItemOperation, updateResourceItemOperation, '#itemNameInput');
 		}
 		
 		var formInfo = {itemNameTxt:"Varlık Kalemi"};
