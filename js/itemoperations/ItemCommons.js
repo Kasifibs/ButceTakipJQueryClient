@@ -1,36 +1,47 @@
 var ItemCommons = function(){
 
 	var that = this;
-	
+
 	this.reloadFunction = function(){
 		location.reload();
 	}
 
+	this.errorFunction = function(){
+		alert("Rest Call sırasında hata oluştu");
+	}
+
 	this.saveItemOperation = function(nameElementId, restUrl){
 
-		var itemName=$(nameElementId).val();						
+		var itemName=$(nameElementId).val();
 		var itemToSave={"name":itemName};
-		
+
 		var restConfig ={type:"POST",
 						 url:restUrl,
 						 contentType:"application/json",
-						 data:JSON.stringify(itemToSave)};
-		
+						 data:JSON.stringify(itemToSave),
+						 crossDomain: true,
+						 xhrFields: {withCredentials: true},
+						 success: that.reloadFunction,
+						 error: that.errorFunction
+		};
+
 		var request = $.ajax(restConfig);
-		request.done(that.reloadFunction);
 	}
 
 	this.deleteItemOperation = function(itemID, restUrl){
-		
+
 		var itemIdToDelete = {"id":itemID};
-									
+
 		var restConfig = {type:"DELETE",
 						  url:restUrl,
 						  contentType:"application/json",
-						  data:JSON.stringify(itemIdToDelete)};
-			
+							crossDomain: true,
+							xhrFields: {withCredentials: true},
+							success: that.reloadFunction,
+ 						 	error: that.errorFunction
+		};
+
 		var request = $.ajax(restConfig);
-		request.done(that.reloadFunction);
 	}
 
 	this.updateItemOperation = function(itemToUpdate, restUrl){
@@ -38,15 +49,21 @@ var ItemCommons = function(){
 		var restConfig = {type:"PUT",
 						  url:restUrl,
 						  contentType:"application/json",
-						  data:JSON.stringify(itemToUpdate)};
-		
+						  data:JSON.stringify(itemToUpdate),
+							crossDomain: true,
+							xhrFields: {withCredentials: true},
+							success: that.reloadFunction,
+							error: that.errorFunction};
+
 		var request = $.ajax(restConfig);
-		request.done(that.reloadFunction);
 	}
 
 	this.retrieveItemsOperation = function(restUrl, retrieveHandlerOperation){
 		$.ajax(
-			{type:"GET",
+			{
+			 xhrFields: {withCredentials: true},
+			 crossDomain: true,
+			 type:"GET",
 			 url:restUrl,
 			 dataType:"json",
 			 success:function(resultData){
@@ -55,13 +72,13 @@ var ItemCommons = function(){
 			 }
 		);
 	}
-			
+
 	this.retrieveHandlerOperation = function(resultData, tableItemSpecificInfo, deleteOperation, updateOperation, nameElementId){
-		
+
 		var generatedTable = that.generateItemTableFromRestResult(resultData, tableItemSpecificInfo);
 		var insertOp = $("#itemTableDiv").append(generatedTable);
 		insertOp.ready(function(){
-				$(".itemDeleteButton").click(deleteOperation);								
+				$(".itemDeleteButton").click(deleteOperation);
 				$(".itemUpdateButton").click(updateOperation);
 				that.handleTableRowClick(nameElementId);
 			}
@@ -74,7 +91,7 @@ var ItemCommons = function(){
 				var tds = $(this).find("td");
 				tr.removeClass('vurgulu');
 				$(this).addClass('vurgulu');
-				
+
 				$.each(tds, function(index, item){
 						switch(index)
 						{
@@ -98,7 +115,7 @@ var ItemCommons = function(){
 		"<th colspan='2'>İşlemler</th>" +
 		"<tr></thead>" +
 		"<tbody>";
-		
+
 		$.each(resultData, function(i, obj) {
 			icerik += "<tr>";
 			icerik += "<td>" + obj.id + "</td>";
@@ -110,11 +127,11 @@ var ItemCommons = function(){
 			icerik += "<input type='submit' itemId='"+obj.id+"' class='itemUpdateButton btn btn-warning' value='Güncelle'>";
 			icerik += "</td>";
 			icerik += "</tr>";
-		});				
-		
+		});
+
 		icerik += "</tbody>";
 		icerik += "</table>";
-		
+
 		return icerik;
 	}
 
