@@ -15,7 +15,7 @@ var ItemOperations = function(retrieveItems, formInfoObj){
 	};
 
 	this.loadItemOpSpecificTemplates = function(){
-		$('#page-content-wrapper').load('/ButceTakip/views/itemoperations/ItemContentArea.html',function(){that.itemContentAreaLoaded();});
+		$('#page-wrapper').load('/ButceTakip/views/itemoperations/ItemContentArea.html',function(){that.itemContentAreaLoaded();});
 	}
 
 	this.loadTemplates = function(){
