@@ -1,23 +1,22 @@
 <div class="container">
-	<div id="loginFormWrapper" class="row">
-		<div id="loginFormDiv" class="col-md-offset-4 col-md-4">
-			<div class="form-group row">
-				<label id="userNameLabel" class="col-md-2 col-form-label">Kullanıcı Adı</label>
-				<div class="col-md-10">
-				  <input type="text" class="form-control" id="usernameInput"></input>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label id="passwordLabel" class="col-md-2 col-form-label">Şifre</label>
-				<div class="col-md-10">
-				  <input type="password" class="form-control" id="passwordInput"></input>
-				</div>
-			</div>
-			<div class="form-group row">
-			  <div class="col-sm-offset-2 col-md-7">
-				<button id="loginButton" type="submit" class="btn btn-primary">Oturum Aç</button>
-			  </div>
-			</div>		
-		</div>
-	</div>
+  <div class="row">
+    <div class="Absolute-Center is-Responsive">
+      <div id="logo-container"></div>
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <form action="" id="loginForm">
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input class="form-control" type="text" name='username' placeholder="username"/>
+          </div>
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input class="form-control" type="password" name='password' placeholder="password"/>
+          </div>
+          <div class="form-group">
+            <button id="loginButton" type="button" class="btn btn-def center-block">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
