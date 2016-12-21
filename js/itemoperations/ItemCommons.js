@@ -108,7 +108,7 @@ var ItemCommons = function(){
 	this.generateItemTableFromRestResult = function(resultData, tableItemSpecificInfo){
 
 		var icerik = "<h2>" + tableItemSpecificInfo.header + "</h2>" +
-		"<table id='itemTable' class='table table-bordered' border='1' cellspacing='0'>";
+		"<table id='itemTable' class='table table-inverse'>";
 		icerik += "<thead><tr>" +
 		"<th>ID</th>" +
 		"<th>"+tableItemSpecificInfo.columnName+" Adı</th>" +

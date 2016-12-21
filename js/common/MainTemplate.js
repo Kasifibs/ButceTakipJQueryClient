@@ -2,7 +2,7 @@ var MainTemplate = function(){
 	var that = this;
 
 	this.mainTemplateLoaded = function(doPageSpecificLoads){
-		$.get("/ButceTakip/views/common/NavBarToggle.html", function(data){
+/*		$.get("/ButceTakip/views/common/NavBarToggle.html", function(data){
 		    $("#navPart").append(data);
 		});
 
@@ -13,7 +13,7 @@ var MainTemplate = function(){
 		$.get("/ButceTakip/views/common/NavSidebar.html", function(data){
 		    $("#navPart").append(data);
 		});
-
+*/
 		doPageSpecificLoads();
 	};
 
