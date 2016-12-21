@@ -9,8 +9,6 @@ var ItemForm = function(itemCommonsObj, formInfoObj){
 		document.getElementById('itemNameTxt').innerHTML = that.formInfo.itemNameTxt;
 		//save
 		var saveResourceItemOperation = function(){ that.itemCommons.saveItemOperation('#itemNameInput', "https://localhost:8443/ButceTakipServer/varlikKalemi/kaydet"); };
-		var saveResourceItemButton = document.getElementById("saveButton");
-		//saveResourceItemButton.addEventListener("click", saveResourceItemOperation);
 		$("#saveButton").click(saveResourceItemOperation);
 	};
 }

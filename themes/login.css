@@ -1,3 +1,7 @@
+.hiddenDiv{
+  visibility: hidden;
+}
+
 #page-wrapper{
   margin-left: 0px;
 }

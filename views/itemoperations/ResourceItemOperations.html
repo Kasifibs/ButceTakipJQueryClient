@@ -8,11 +8,17 @@
 		<script type="text/javascript" src="/ButceTakip/js/navScript.js"></script>
 		<script type="text/javascript" src="/ButceTakip/js/itemoperations/ItemOperations.js"></script>
 		<script type="text/javascript" src="/ButceTakip/js/common/MainTemplate.js"></script>
+		<script type="text/javascript" src="/ButceTakip/js/common/AuthenticationChecker.js"></script>
 		<script type="text/javascript" src="/ButceTakip/js/itemoperations/ItemForm.js"></script>
 		<script type="text/javascript" src="/ButceTakip/js/itemoperations/ResourceItemOperations.js"></script>
 		<script type="text/javascript" src="/ButceTakip/js/itemoperations/ItemCommons.js"></script>
 
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<script type="text/javascript">
+	  	var authenticationCheckerObj = new AuthenticationChecker();
+			authenticationCheckerObj.checkStatus();
+		</script>
 
 		<style type="text/css">
 			@import "/ButceTakip/themes/tema.css";

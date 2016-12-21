@@ -1,4 +1,4 @@
-var MainTemplate = function(){
+var MainTemplateWithoutSidebarMenu = function(){
 	var that = this;
 
 	this.mainTemplateLoaded = function(doPageSpecificLoads){
