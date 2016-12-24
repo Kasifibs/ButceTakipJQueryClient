@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+#headerMenuDiv{
+  display: none;
+}
+
 #loginUpperSpace{
   height: 20%;
 }
