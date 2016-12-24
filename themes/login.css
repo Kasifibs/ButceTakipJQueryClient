@@ -2,27 +2,25 @@
   visibility: hidden;
 }
 
-#page-wrapper{
-  margin-left: 0px;
+#pageContent{
+  height: 100%;
 }
 
-.Absolute-Center {
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-	background-color: #4A4B4C;
+#loginUpperSpace{
+  height: 20%;
 }
 
-.Absolute-Center.is-Responsive {
-  width: 50%;
-  height: 50%;
-  min-width: 200px;
-  max-width: 750px;
-  padding: 10px;
+#loginBottomSpace{
+  height: 20%;
+}
+
+#loginFormContainer{
+  height: 60%;
 }
 
 #loginButton{
   text-align: center;
+  background-color: #FF6600;
 }
 
 #logo-container{

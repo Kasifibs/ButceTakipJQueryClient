@@ -2,13 +2,8 @@ var MainTemplateWithoutSidebarMenu = function(){
 	var that = this;
 
 	this.mainTemplateLoaded = function(doPageSpecificLoads){
-	/*	$.get("/ButceTakip/views/common/NavBarToggle.html", function(data){
-		    $("#navPart").append(data);
-		});
 
-		$.get("/ButceTakip/views/common/NavBarTop.html", function(data){
-		    $("#navPart").append(data);
-		});*/
+		$("#pageRow").append("<div id='pageContent' class='col-md-12'></div>");
 
 		doPageSpecificLoads();
 	};

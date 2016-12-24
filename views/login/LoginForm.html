@@ -1,25 +1,23 @@
-<div class="container">
+<div id="loginFormContainer" class="container">
   <div class="row">
-    <div class="Absolute-Center is-Responsive">
       <div id="logo-container"></div>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <div class="col-md-6 col-md-offset-3">
         <form action="" id="loginForm">
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="usernameTxt" class="form-control" type="text" name='username' placeholder="username"/>
+            <input id="usernameTxt" class="form-control" type="text" name='username' placeholder="kullanıcı adı"/>
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input id="passwordTxt" class="form-control" type="password" name='password' placeholder="password"/>
+            <input id="passwordTxt" class="form-control" type="password" name='password' placeholder="şifre"/>
           </div>
           <div class="form-group">
-            <button id="loginButton" type="button" class="btn btn-def center-block">Giriş Yap</button>
+            <button id="loginButton" type="button" class="btn btn-warning center-block">Giriş Yap</button>
           </div>
           <div id="loginFailMessage" class="row alert alert-danger hiddenDiv ">
               Kullanıcı Adı veya Şifre Yanlış!
           </div>
         </form>
       </div>
-    </div>
   </div>
 </div>
