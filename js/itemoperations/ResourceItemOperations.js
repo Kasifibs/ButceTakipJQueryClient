@@ -25,9 +25,14 @@ $(document).ready(function() {
 			itemCommonsObj.retrieveHandlerOperation(resultData, tableItemSpecificInfo, deleteResourceItemOperation, updateResourceItemOperation, '#itemNameInput');
 		}
 
+		//save
+		var saveResourceItemOperation = function(){
+			itemCommonsObj.saveItemOperation('#itemNameInput', "https://localhost:8443/ButceTakipServer/varlikKalemi/kaydet");
+		};
+
 		var formInfo = {itemNameTxt:"Varlık Kalemi"};
 
-		var itemOperationsObj = new ItemOperations(retrieveResourceItemOperation, formInfo);
+		var itemOperationsObj = new ItemOperations(retrieveResourceItemOperation, formInfo, saveResourceItemOperation);
 		itemOperationsObj.loadTemplates();
 	}
 );
