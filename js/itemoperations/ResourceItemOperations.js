@@ -5,7 +5,6 @@ $(document).ready(function() {
 		//delete
 		var deleteResourceItemOperation = function(){
 			var itemId = $(this).attr('itemId');
-			//itemCommonsObj.deleteItemOperation(itemId, "https://demo8082322.mockable.io/deleteResourceItem");
 			itemCommonsObj.deleteItemOperation(itemId, "https://localhost:8443/ButceTakipServer/varlikKalemi/sil/"+itemId);
 		};
 
@@ -14,14 +13,12 @@ $(document).ready(function() {
 			var id =  $(this).attr('itemId');
 			var itemToUpdate = {"id":id,
 								"name":$('#itemNameInput').val()};
-			//itemCommonsObj.updateItemOperation(itemToUpdate, "https://demo8082322.mockable.io/updateResourceItem");
 			itemCommonsObj.updateItemOperation(itemToUpdate, "https://localhost:8443/ButceTakipServer/varlikKalemi/guncelle");
 		};
 
 		//retrieve
 		var retrieveResourceItemOperation = function(){
 			itemCommonsObj.retrieveItemsOperation("https://localhost:8443/ButceTakipServer/varlikKalemi/liste", retriveResourceItemHandlerOperation);
-			//itemCommonsObj.retrieveItemsOperation("https://demo8082322.mockable.io/getResourceItems", retriveResourceItemHandlerOperation);
 		}
 		var retriveResourceItemHandlerOperation = function(resultData){
 			var tableItemSpecificInfo = {header:"Varlık Kalemi Listesi",columnName:"Varlık Kalemi"};
