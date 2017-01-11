@@ -29,6 +29,7 @@ $(document).ready(function() {
 		var saveIncomeItemOperation = function(){
 			itemCommonsObj.saveItemOperation('#itemNameInput', "https://localhost:8443/ButceTakipServer/gelirKalemi/kaydet");
 		};
+		
 		var formInfo = {itemNameTxt:"Gelir Kalemi"};
 
 		var itemOperationsObj = new ItemOperations(retrieveIncomeItemOperation, formInfo, saveIncomeItemOperation);
