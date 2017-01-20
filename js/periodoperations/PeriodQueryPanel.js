@@ -3,6 +3,37 @@ var PeriodQueryPanel = function(){
   var that = this;
 
   this.periodQueryPanelLoaded = function(){
+    that.initDatePickers();
+    $('#hidePeriodQueryPanelButton').click(that.hidePeriodQueryPanel);
+    $('#showPeriodQueryPanelButton').click(that.showPeriodQueryPanel);
+    $('#periodQueryButton').click(that.queryButtonClicked);
+    $('#periodQueryCleanButton').click(that.cleanButtonClicked);
+  }
+
+  this.queryButtonClicked = function(){
+
+  }
+
+  this.cleanButtonClicked = function(){
+    $('#periodQueryDiv').empty();
+
+    $.get("/ButceTakip/views/periodoperations/PeriodQueryPanel.html", function(data){
+        $("#periodQueryDiv").append(data);
+        that.periodQueryPanelLoaded();
+    });
+  }
+
+  this.hidePeriodQueryPanel = function(){
+    $('.queryFormElement').addClass("hiddenElement");
+    $('#showPeriodQueryPanelButton').removeClass("hiddenElement");
+  }
+
+  this.showPeriodQueryPanel = function(){
+    $('.queryFormElement').removeClass("hiddenElement");
+    $('#showPeriodQueryPanelButton').addClass("hiddenElement");
+  }
+
+  this.initDatePickers = function(){
     $('#periodBeginDateTimePicker1').datetimepicker({
       format :'DD.MM.YYYY'
     });
@@ -36,19 +67,5 @@ var PeriodQueryPanel = function(){
     $("#periodEndDateTimePicker2").on("dp.change", function (e) {
             $('#periodEndDateTimePicker1').data("DateTimePicker").maxDate(e.date);
     });
-
-    $('#hidePeriodQueryPanelButton').click(that.hidePeriodQueryPanel);
-    $('#showPeriodQueryPanelButton').click(that.showPeriodQueryPanel);
-
-  }
-
-  this.hidePeriodQueryPanel = function(){
-    $('.queryFormElement').addClass("hiddenElement");
-    $('#showPeriodQueryPanelButton').removeClass("hiddenElement");
-  }
-
-  this.showPeriodQueryPanel = function(){
-    $('.queryFormElement').removeClass("hiddenElement");
-    $('#showPeriodQueryPanelButton').addClass("hiddenElement");
   }
 }

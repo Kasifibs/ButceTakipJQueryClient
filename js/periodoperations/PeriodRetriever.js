@@ -19,7 +19,7 @@ var PeriodRetriever = function(){
 
   this.periodRetrieveHandlerOperation = function(resultData){
 
-    $('#periodResultTable tbody').remove();
+    $('#periodResultTable tbody').empty();
 
     $.each(resultData, function(i, obj) {
 			var icerik = "<tr>";
@@ -34,7 +34,7 @@ var PeriodRetriever = function(){
 			icerik += "</td>";
 			icerik += "</tr>";
 
-      $('#periodResultTable tr:last').after(icerik);
+      $('#periodResultTable tbody').append(icerik);
 		});
 
   }
