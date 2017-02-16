@@ -1,6 +1,7 @@
 var PeriodQueryPanel = function(){
 
   var that = this;
+  var periodRetrieverObj = new PeriodRetriever();
 
   this.periodQueryPanelLoaded = function(){
     that.initDatePickers();
@@ -11,7 +12,25 @@ var PeriodQueryPanel = function(){
   }
 
   this.queryButtonClicked = function(){
+    var minBeginDate = $('#periodBeginDateTimePicker1').data("DateTimePicker").date();
+    var maxBeginDate = $('#periodBeginDateTimePicker2').data("DateTimePicker").date();
 
+    var minEndDate = $('#periodEndDateTimePicker1').data("DateTimePicker").date();
+    var maxEndDate = $('#periodEndDateTimePicker2').data("DateTimePicker").date();
+
+    var queryParams = {"minBeginDate":that.getFormattedDate(minBeginDate),
+                       "maxBeginDate":that.getFormattedDate(maxBeginDate),
+                       "minEndDate":that.getFormattedDate(minEndDate),
+                       "maxEndDate":that.getFormattedDate(maxEndDate)};
+
+    periodRetrieverObj.retrieveUsingCriterias(queryParams);
+  }
+
+  this.getFormattedDate = function(date){
+    if(date != null){
+        return date.format("DD.MM.YYYY");
+    }
+    return null;
   }
 
   this.cleanButtonClicked = function(){

@@ -17,6 +17,23 @@ var PeriodRetriever = function(){
 		);
   }
 
+  this.retrieveUsingCriterias = function(queryParameters){
+
+    $.ajax(
+			{
+			 xhrFields: {withCredentials: true},
+			 crossDomain: true,
+			 type:"GET",
+			 url:"https://localhost:8443/ButceTakipServer/period/sorgula",
+       contentType: 'application/json',
+       data:queryParameters,
+			 success:function(resultData){
+					that.periodRetrieveHandlerOperation(resultData);
+				}
+			 }
+		);
+  }
+
   this.periodRetrieveHandlerOperation = function(resultData){
 
     $('#periodResultTable tbody').empty();
