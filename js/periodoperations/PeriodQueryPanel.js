@@ -2,6 +2,7 @@ var PeriodQueryPanel = function(){
 
   var that = this;
   var periodRetrieverObj = new PeriodRetriever();
+  var periodTableGeneratorObj = new PeriodTableGenerator();
 
   this.periodQueryPanelLoaded = function(){
     that.initDatePickers();
@@ -12,18 +13,21 @@ var PeriodQueryPanel = function(){
   }
 
   this.queryButtonClicked = function(){
+    var name = $('#periodNameQueryTextField').val();
     var minBeginDate = $('#periodBeginDateTimePicker1').data("DateTimePicker").date();
     var maxBeginDate = $('#periodBeginDateTimePicker2').data("DateTimePicker").date();
 
     var minEndDate = $('#periodEndDateTimePicker1').data("DateTimePicker").date();
     var maxEndDate = $('#periodEndDateTimePicker2').data("DateTimePicker").date();
 
-    var queryParams = {"minBeginDate":that.getFormattedDate(minBeginDate),
+    var queryParams = {"name":name,
+                       "minBeginDate":that.getFormattedDate(minBeginDate),
                        "maxBeginDate":that.getFormattedDate(maxBeginDate),
                        "minEndDate":that.getFormattedDate(minEndDate),
                        "maxEndDate":that.getFormattedDate(maxEndDate)};
 
-    periodRetrieverObj.retrieveUsingCriterias(queryParams);
+    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generatePeriodTableFromResultData;
+    periodRetrieverObj.retrieveUsingCriterias(queryParams, periodRetrieveHandlerOperation);
   }
 
   this.getFormattedDate = function(date){

@@ -2,7 +2,7 @@ var PeriodRetriever = function(){
 
   var that = this;
 
-  this.retrieveAllPeriods = function(){
+  this.retrieveAllPeriods = function(periodRetrieveHandlerOperation){
     $.ajax(
 			{
 			 xhrFields: {withCredentials: true},
@@ -11,13 +11,13 @@ var PeriodRetriever = function(){
 			 url:"https://localhost:8443/ButceTakipServer/period/liste",
 			 dataType:"json",
 			 success:function(resultData){
-					that.periodRetrieveHandlerOperation(resultData);
+					periodRetrieveHandlerOperation(resultData);
 				}
 			 }
 		);
   }
 
-  this.retrieveUsingCriterias = function(queryParameters){
+  this.retrieveUsingCriterias = function(queryParameters, periodRetrieveHandlerOperation){
 
     $.ajax(
 			{
@@ -28,31 +28,9 @@ var PeriodRetriever = function(){
        contentType: 'application/json',
        data:queryParameters,
 			 success:function(resultData){
-					that.periodRetrieveHandlerOperation(resultData);
+					periodRetrieveHandlerOperation(resultData);
 				}
 			 }
 		);
-  }
-
-  this.periodRetrieveHandlerOperation = function(resultData){
-
-    $('#periodResultTable tbody').empty();
-
-    $.each(resultData, function(i, obj) {
-			var icerik = "<tr>";
-			icerik += "<td>" + obj.id + "</td>";
-			icerik += "<td>" + obj.beginDate + "</td>";
-      icerik += "<td>" + obj.endDate + "</td>";
-			icerik += "<td>";
-			icerik += "<input type='submit' itemId='"+obj.id+"' class='itemDeleteButton btn btn-danger' value='Sil'>";
-			icerik += "</td>";
-			icerik += "<td>";
-			icerik += "<input type='submit' itemId='"+obj.id+"' class='itemUpdateButton btn btn-warning' value='Güncelle'>";
-			icerik += "</td>";
-			icerik += "</tr>";
-
-      $('#periodResultTable tbody').append(icerik);
-		});
-
   }
 }

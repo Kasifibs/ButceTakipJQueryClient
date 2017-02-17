@@ -4,7 +4,8 @@ var PeriodPageLoader = function(){
 
   var mainTemplateObj = new MainTemplate();
   var periodQueryPanelObj = new PeriodQueryPanel();
-  var periodRetrieverObj = new PeriodRetriever();
+  var periodResultPanelObj = new PeriodResultPanel();
+  var periodBottomPanelObj = new PeriodBottomPanel();
 
   this.loadTemplates = function(){
 		$('body').load('/ButceTakip/views/common/MainTemplate.html', function(){mainTemplateObj.mainTemplateLoaded(that.loadPeriodOpSpecificTemplates)});
@@ -25,11 +26,12 @@ var PeriodPageLoader = function(){
 
     $.get("/ButceTakip/views/periodoperations/PeriodResultPanel.html", function(data){
         $("#periodListDiv").append(data);
-        periodRetrieverObj.retrieveAllPeriods();
+        periodResultPanelObj.periodResultPanelLoaded();
     });
 
     $.get("/ButceTakip/views/periodoperations/PeriodBottomPanel.html", function(data){
         $("#periodBottomDiv").append(data);
+        periodBottomPanelObj.periodBottomPanelLoaded();
     });
   }
 }
