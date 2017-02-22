@@ -1,0 +1,15 @@
+.commonQueryDiv{
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: white;
+  margin-top: 10px;
+}
+
+.showQueryPanelButton{
+  margin-bottom: 10px;
+}
+
+.queryFormElement{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
