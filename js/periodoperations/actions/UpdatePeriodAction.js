@@ -1,8 +1,8 @@
-var SavePeriodAction = function(){
+var UpdatePeriodAction = function(){
 
-  this.savePeriod = function(period, successFunc, failFunc){
-		var restConfig ={type:"POST",
-						 url:"https://localhost:8443/ButceTakipServer/period/kaydet",
+  this.updatePeriod = function(period, successFunc, failFunc){
+		var restConfig ={type:"PUT",
+						 url:"https://localhost:8443/ButceTakipServer/period/guncelle",
 						 contentType:"application/json",
 						 data:JSON.stringify(period),
 						 crossDomain: true,

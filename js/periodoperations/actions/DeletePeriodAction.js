@@ -1,7 +1,5 @@
 var DeletePeriodAction = function(){
 
-  var that = this;
-
   this.deletePeriod = function(itemId, successFunc, failFunc){
 
 		var restConfig = {type:"DELETE",

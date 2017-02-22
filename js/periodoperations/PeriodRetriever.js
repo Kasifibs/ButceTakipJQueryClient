@@ -33,4 +33,19 @@ var PeriodRetriever = function(){
 			 }
 		);
   }
+
+  this.retrievePeriodById = function(periodId, periodRetrieveHandlerOperation){
+    $.ajax(
+			{
+			 xhrFields: {withCredentials: true},
+			 crossDomain: true,
+			 type:"GET",
+			 url:"https://localhost:8443/ButceTakipServer/period/" + periodId,
+       contentType: 'application/json',
+			 success:function(resultData){
+					periodRetrieveHandlerOperation(resultData);
+				}
+			 }
+		);
+  }
 }

@@ -16,16 +16,19 @@ var PeriodTableGenerator = function(){
     var generatedRows = "";
 
     $.each(resultData, function(i, obj) {
+      var beginDate = moment(obj.beginDate).format('DD.MM.YYYY');
+      var endDate = moment(obj.endDate).format('DD.MM.YYYY');
+
 			var row = "<tr>";
 			row += "<td>" + obj.id + "</td>";
       row += "<td>" +obj.name + "</td>";
-			row += "<td>" + obj.beginDate + "</td>";
-      row += "<td>" + obj.endDate + "</td>";
+			row += "<td>" + beginDate + "</td>";
+      row += "<td>" + endDate + "</td>";
 			row += "<td>";
 			row += "<input type='submit' itemId='"+obj.id+"' class='periodDeleteButton btn btn-danger' value='Sil' data-toggle='modal' data-target='#deletePeriodModal'>";
 			row += "</td>";
 			row += "<td>";
-			row += "<input type='submit' itemId='"+obj.id+"' class='periodUpdateButton btn btn-warning' value='Güncelle'>";
+			row += "<input type='submit' itemId='"+obj.id+"' class='periodUpdateButton btn btn-warning' value='Güncelle' data-toggle='modal' data-target='#updatePeriodModal'>";
 			row += "</td>";
 			row += "</tr>";
 
