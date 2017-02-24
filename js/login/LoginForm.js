@@ -24,7 +24,7 @@ var LoginForm = function(){
   };
 
   this.loginSuccess = function(data){
-    window.location.replace("/ButceTakip/views/itemoperations/ResourceItemOperations.html");
+    window.location.replace("/ButceTakip/views/itemoperations/resourceitem/ResourceItemOperations.html");
   }
 
   this.loginFailed = function(){
