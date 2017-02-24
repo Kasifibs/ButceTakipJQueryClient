@@ -5,6 +5,7 @@ var ResourceItemPageLoader = function(){
   var mainTemplateObj = new MainTemplate();
   var resourceItemQueryPanelObj = new ResourceItemQueryPanel();
   var resourceItemResultPanelObj = new ResourceItemResultPanel();
+  var resourceItemBottomPanelObj = new ResourceItemBottomPanel();
 
   this.loadTemplates = function(){
 		$('body').load('/ButceTakip/views/common/MainTemplate.html', function(){mainTemplateObj.mainTemplateLoaded(that.loadResourceItemOpSpecificTemplates)});
@@ -28,5 +29,9 @@ var ResourceItemPageLoader = function(){
         resourceItemResultPanelObj.resourceItemResultPanelLoaded();
     });
 
+    $.get("/ButceTakip/views/itemoperations/resourceitem/ResourceItemBottomPanel.html", function(data){
+        $("#resourceItemBottomDiv").append(data);
+        resourceItemBottomPanelObj.resourceItemBottomPanelLoaded();
+    });
   }
 }
