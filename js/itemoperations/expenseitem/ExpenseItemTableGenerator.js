@@ -1,6 +1,6 @@
-var IncomeItemTableGenerator = function(){
+var ExpenseItemTableGenerator = function(){
 
-  IncomeItemTableGenerator.prototype.generateRowsFromResultData = function(resultData){
+  ExpenseItemTableGenerator.prototype.generateRowsFromResultData = function(resultData){
     var generatedRows = "";
 
     $.each(resultData, function(i, obj) {
