@@ -3,9 +3,13 @@ var IncomeItemQueryPanel = function(){
   var that = this;
   var incomeItemTableGeneratorObj = new IncomeItemTableGenerator();
 
-  IncomeItemQueryPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
-    $.get("/ButceTakip/views/itemoperations/incomeitem/IncomeItemQueryPanel.html", function(data){
-        $("#crudItemSpecificCriteriasDiv").append(data);
+  IncomeItemQueryPanel.prototype.loadCrudItemSpecificCriteriasDivSynchronously = function(){
+    $.ajax({
+        url: "/ButceTakip/views/itemoperations/incomeitem/IncomeItemQueryPanel.html",
+        success: function (data) {
+          $("#crudItemSpecificCriteriasDiv").append(data);
+        },
+        async: false
     });
   }
 

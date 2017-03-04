@@ -1,17 +1,17 @@
 var NewPeriodModal = function(){
 
-  var that=this;
-
-  var savePeriodActionObj = new SavePeriodAction();
-  var periodRetrieverObj = new PeriodRetriever();
+  var that = this;
   var periodTableGeneratorObj = new PeriodTableGenerator();
 
-  this.newPeriodModalLoaded = function(){
+  NewPeriodModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.initDatePickers();
-    $('#saveNewPeriodButton').click(that.saveNewPeriod);
   }
 
-  this.saveNewPeriod = function(){
+  NewPeriodModal.prototype.getItemTypeSpecificFormUrl = function(){
+    return "/ButceTakip/views/periodoperations/modals/NewPeriodModal.html";
+  }
+
+  NewPeriodModal.prototype.saveCrudItem = function(){
     var name = $('#addPeriodNameTextField').val();
     var beginDate = $('#addPeriodBeginDatePicker').data("DateTimePicker").date();
     var endDate = $('#addPeriodEndDatePicker').data("DateTimePicker").date();
@@ -22,21 +22,21 @@ var NewPeriodModal = function(){
       "endDate":endDate.format("YYYY-MM-DD")
     }
 
-    savePeriodActionObj.savePeriod(newPeriod, that.saveSuccess, that.saveFail);
+    that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/period/kaydet", newPeriod, that.saveSuccess, that.saveFail);
   }
 
-  this.saveSuccess = function(){
-    $("#newPeriodModal").modal("hide");
+  NewPeriodModal.prototype.getSaveModalTitleText = function(){
+    return "Dönem Ekle";
+  }
 
-    $.get("/ButceTakip/views/periodoperations/alerts/NewPeriodSuccessAlert.html", function(data){
-        $("#resultMessageShowingDiv").append(data);
-    });
+  NewPeriodModal.prototype.getSaveSuccessMessage = function(){
+    return "Dönem başarıyla eklendi!";
+  }
 
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generatePeriodTableFromResultData;
-    periodRetrieverObj.retrieveAllPeriods(periodRetrieveHandlerOperation);
-  };
-
-  this.saveFail = function(){};
+  NewPeriodModal.prototype.retrieveItemsToUpdateScreen = function(){
+    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
+    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", periodRetrieveHandlerOperation);
+  }
 
   this.initDatePickers = function(){
     $('#addPeriodBeginDatePicker').datetimepicker({
@@ -56,4 +56,5 @@ var NewPeriodModal = function(){
             $('#addPeriodBeginDatePicker').data("DateTimePicker").maxDate(e.date);
     });
   }
+
 }

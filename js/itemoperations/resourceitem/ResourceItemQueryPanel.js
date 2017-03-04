@@ -3,9 +3,13 @@ var ResourceItemQueryPanel = function(){
   var that = this;
   var resourceItemTableGeneratorObj = new ResourceItemTableGenerator();
 
-  ResourceItemQueryPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
-    $.get("/ButceTakip/views/itemoperations/resourceitem/ResourceItemQueryPanel.html", function(data){
-        $("#crudItemSpecificCriteriasDiv").append(data);
+  ResourceItemQueryPanel.prototype.loadCrudItemSpecificCriteriasDivSynchronously = function(){
+    $.ajax({
+        url: "/ButceTakip/views/itemoperations/resourceitem/ResourceItemQueryPanel.html",
+        success: function (data) {
+          $("#crudItemSpecificCriteriasDiv").append(data);
+        },
+        async: false
     });
   }
 

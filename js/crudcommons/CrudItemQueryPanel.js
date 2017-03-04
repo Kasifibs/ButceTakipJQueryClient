@@ -4,7 +4,7 @@ var CrudItemQueryPanel = function(){
   this.crudItemRetrieverObj = new CrudItemRetriever();
 
   this.crudItemQueryPanelLoaded = function(){
-    that.loadCrudItemSpecificCriteriasDiv();
+    that.loadCrudItemSpecificCriteriasDivSynchronously();
     that.queryButtonClicked();
     $('#hideCrudItemQueryPanelButton').click(that.hideCrudItemQueryPanel);
     $('#showCrudItemQueryPanelButton').click(that.showCrudItemQueryPanel);

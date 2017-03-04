@@ -1,61 +1,56 @@
 var UpdatePeriodModal = function(){
 
   var that = this;
-  var modal;
-  var currentPeriodId;
-  var periodRetrieverObj = new PeriodRetriever();
   var periodTableGeneratorObj = new PeriodTableGenerator();
-  var updatePeriodActionObj = new UpdatePeriodAction();
 
-  this.updatePeriodModalLoaded = function(){
+  UpdatePeriodModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.initDatePickers();
-    $('#updatePeriodButton').click(that.updatePeriod);
-
-    $('#updatePeriodModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget);
-      selectedItemId = button.attr('itemId');
-      periodRetrieverObj.retrievePeriodById(selectedItemId, that.fillModalWithCurrentPeriod);
-      modal = $(this);
-    })
   }
 
-  this.updatePeriod = function(){
+  UpdatePeriodModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
+    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/period/", selectedItemId, that.fillModalWithCurrentCrudItem);
+  }
+
+  UpdatePeriodModal.prototype.fillModalWithCurrentCrudItem = function(retrievedPeriod){
+    that.currentPeriodId = retrievedPeriod.id;
+    var retrievedBeginDate = moment(retrievedPeriod.beginDate).format('DD.MM.YYYY');
+    var retrievedEndDate = moment(retrievedPeriod.endDate).format('DD.MM.YYYY');
+
+    that.modal.find('#updatePeriodNameTextField').val(retrievedPeriod.name);
+    that.modal.find('#updatePeriodBeginDatePicker').data("DateTimePicker").date(retrievedBeginDate);
+    that.modal.find('#updatePeriodEndDatePicker').data("DateTimePicker").date(retrievedEndDate);
+  }
+
+  UpdatePeriodModal.prototype.getItemTypeSpecificFormUrl = function(){
+    return "/ButceTakip/views/periodoperations/modals/UpdatePeriodModal.html";
+  }
+
+  UpdatePeriodModal.prototype.updateCrudItem = function(){
     var name = $('#updatePeriodNameTextField').val();
     var beginDate = $('#updatePeriodBeginDatePicker').data("DateTimePicker").date();
     var endDate = $('#updatePeriodEndDatePicker').data("DateTimePicker").date();
 
     var updatedPeriod ={
-      "id":currentPeriodId,
+      "id":that.currentPeriodId,
       "name":name,
       "beginDate":beginDate.format("YYYY-MM-DD"),
       "endDate":endDate.format("YYYY-MM-DD")
     }
 
-    updatePeriodActionObj.updatePeriod(updatedPeriod, that.updateSuccess, that.updateFail);
+    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/period/guncelle", updatedPeriod, that.saveSuccess, that.saveFail);
   }
 
-  this.updateSuccess = function(){
-    $("#updatePeriodModal").modal("hide");
+  UpdatePeriodModal.prototype.getUpdateModalTitleText = function(){
+    return "Dönem Güncelle";
+  }
 
-    $.get("/ButceTakip/views/periodoperations/alerts/UpdatePeriodSuccessAlert.html", function(data){
-        $("#resultMessageShowingDiv").append(data);
-    });
+  UpdatePeriodModal.prototype.getUpdateSuccessMessage = function(){
+    return "Dönem başarıyla güncellendi!";
+  }
 
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generatePeriodTableFromResultData;
-    periodRetrieverObj.retrieveAllPeriods(periodRetrieveHandlerOperation);
-  };
-
-  this.updateFail = function(){};
-
-  this.fillModalWithCurrentPeriod = function(resultData){
-    var retrievedPeriod = resultData;
-    currentPeriodId = retrievedPeriod.id;
-    var retrievedBeginDate = moment(retrievedPeriod.beginDate).format('DD.MM.YYYY');
-    var retrievedEndDate = moment(retrievedPeriod.endDate).format('DD.MM.YYYY');
-
-    modal.find('#updatePeriodNameTextField').val(retrievedPeriod.name);
-    modal.find('#updatePeriodBeginDatePicker').data("DateTimePicker").date(retrievedBeginDate);
-    modal.find('#updatePeriodEndDatePicker').data("DateTimePicker").date(retrievedEndDate);
+  UpdatePeriodModal.prototype.retrieveItemsToUpdateScreen = function(){
+    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
+    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", periodRetrieveHandlerOperation);
   }
 
   this.initDatePickers = function(){
@@ -76,4 +71,5 @@ var UpdatePeriodModal = function(){
             $('#updatePeriodBeginDatePicker').data("DateTimePicker").maxDate(e.date);
     });
   }
+
 }

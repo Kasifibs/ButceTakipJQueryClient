@@ -1,24 +1,24 @@
 var PeriodResultPanel = function(){
 
-  var that = this;
+    var that = this;
+    var periodTableGeneratorObj = new PeriodTableGenerator();
+    var deletePeriodModalObj = new DeletePeriodModal();
+    var updatePeriodModalObj = new UpdatePeriodModal();
 
-  var periodRetrieverObj = new PeriodRetriever();
-  var periodTableGeneratorObj = new PeriodTableGenerator();
-  var deletePeriodModalObj = new DeletePeriodModal();
-  var updatePeriodModalObj = new UpdatePeriodModal();
-
-  this.periodResultPanelLoaded = function(){
-    $.get("/ButceTakip/views/periodoperations/modals/DeletePeriodModal.html", function(data){
-        $("#deletePeriodModalDiv").append(data);
-        deletePeriodModalObj.deletePeriodModalLoaded();
+  PeriodResultPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
+    $.get("/ButceTakip/views/periodoperations/PeriodResultPanel.html", function(data){
+          $("#crudItemResultTableHeaderRow").append(data);
     });
 
-    $.get("/ButceTakip/views/periodoperations/modals/UpdatePeriodModal.html", function(data){
-        $("#updatePeriodModalDiv").append(data);
-        updatePeriodModalObj.updatePeriodModalLoaded();
-    });
+    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
+    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", periodRetrieveHandlerOperation);
+  }
 
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generatePeriodTableFromResultData;
-    periodRetrieverObj.retrieveAllPeriods(periodRetrieveHandlerOperation);
+  PeriodResultPanel.prototype.deleteCrudItemModalLoaded = function(){
+    deletePeriodModalObj.deleteCrudItemModalLoaded();
+  }
+
+  PeriodResultPanel.prototype.updateCrudItemModalLoaded = function(){
+    updatePeriodModalObj.updateCrudItemModalLoaded();
   }
 }

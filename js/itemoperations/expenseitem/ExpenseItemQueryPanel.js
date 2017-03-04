@@ -3,9 +3,13 @@ var ExpenseItemQueryPanel = function(){
   var that = this;
   var expenseItemTableGeneratorObj = new ExpenseItemTableGenerator();
 
-  ExpenseItemQueryPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
-    $.get("/ButceTakip/views/itemoperations/expenseitem/ExpenseItemQueryPanel.html", function(data){
-        $("#crudItemSpecificCriteriasDiv").append(data);
+  ExpenseItemQueryPanel.prototype.loadCrudItemSpecificCriteriasDivSynchronously = function(){
+    $.ajax({
+        url: "/ButceTakip/views/itemoperations/expenseitem/ExpenseItemQueryPanel.html",
+        success: function (data) {
+          $("#crudItemSpecificCriteriasDiv").append(data);
+        },
+        async: false
     });
   }
 

@@ -1,18 +1,20 @@
 var PeriodQueryPanel = function(){
 
   var that = this;
-  var periodRetrieverObj = new PeriodRetriever();
   var periodTableGeneratorObj = new PeriodTableGenerator();
 
-  this.periodQueryPanelLoaded = function(){
-    that.initDatePickers();
-    $('#hidePeriodQueryPanelButton').click(that.hidePeriodQueryPanel);
-    $('#showPeriodQueryPanelButton').click(that.showPeriodQueryPanel);
-    $('#periodQueryButton').click(that.queryButtonClicked);
-    $('#periodQueryCleanButton').click(that.cleanButtonClicked);
+  PeriodQueryPanel.prototype.loadCrudItemSpecificCriteriasDivSynchronously = function(){
+    $.ajax({
+        url: "/ButceTakip/views/periodoperations/PeriodQueryPanel.html",
+        success: function (data) {
+          $("#crudItemSpecificCriteriasDiv").append(data);
+          that.initDatePickers();
+        },
+        async: false
+    });
   }
 
-  this.queryButtonClicked = function(){
+  PeriodQueryPanel.prototype.queryButtonClicked = function(){
     var name = $('#periodNameQueryTextField').val();
     var minBeginDate = $('#periodBeginDateTimePicker1').data("DateTimePicker").date();
     var maxBeginDate = $('#periodBeginDateTimePicker2').data("DateTimePicker").date();
@@ -26,8 +28,9 @@ var PeriodQueryPanel = function(){
                        "minEndDate":that.getFormattedDate(minEndDate),
                        "maxEndDate":that.getFormattedDate(maxEndDate)};
 
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generatePeriodTableFromResultData;
-    periodRetrieverObj.retrieveUsingCriterias(queryParams, periodRetrieveHandlerOperation);
+
+    var periodItemRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
+    that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/period/sorgula", queryParams, periodItemRetrieveHandlerOperation);
   }
 
   this.getFormattedDate = function(date){
@@ -35,25 +38,6 @@ var PeriodQueryPanel = function(){
         return date.format("DD.MM.YYYY");
     }
     return null;
-  }
-
-  this.cleanButtonClicked = function(){
-    $('#periodQueryDiv').empty();
-
-    $.get("/ButceTakip/views/periodoperations/PeriodQueryPanel.html", function(data){
-        $("#periodQueryDiv").append(data);
-        that.periodQueryPanelLoaded();
-    });
-  }
-
-  this.hidePeriodQueryPanel = function(){
-    $('.queryFormElement').addClass("hiddenElement");
-    $('#showPeriodQueryPanelButton').removeClass("hiddenElement");
-  }
-
-  this.showPeriodQueryPanel = function(){
-    $('.queryFormElement').removeClass("hiddenElement");
-    $('#showPeriodQueryPanelButton').addClass("hiddenElement");
   }
 
   this.initDatePickers = function(){

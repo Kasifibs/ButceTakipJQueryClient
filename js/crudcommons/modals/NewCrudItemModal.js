@@ -10,6 +10,7 @@ var NewCrudItemModal = function(){
 
     $.get(that.getItemTypeSpecificFormUrl(), function(data){
         $("#crudItemSpecificFormDiv").append(data);
+        that.performInitializationsIfNeededAfterModalLoaded();
     });
 
     $('#newCrudItemModal').on('show.bs.modal', function (event) {
@@ -18,6 +19,10 @@ var NewCrudItemModal = function(){
       modal.find('#newCrudItemModalTitle').text(modalTitleText);
     })
 
+  }
+
+  this.performInitializationsIfNeededAfterModalLoaded = function(){
+    console.log("Override this function if needed-NewCrudItemModal.performInitializationsIfNeededAfterModalLoaded");
   }
 
   this.getItemTypeSpecificFormUrl = function(){
@@ -43,7 +48,7 @@ var NewCrudItemModal = function(){
   this.saveSuccess = function(){
     $("#newCrudItemModal").modal("hide");
     that.saveCounter = that.saveCounter + 1;
-    
+
     $.get("/ButceTakip/views/crudcommons/alerts/SaveSuccessAlert.html", function(data){
         $("#resultMessageShowingDiv").append(data);
         $("#specificSaveAlertText").append("<strong>"+that.getSaveSuccessMessage()+"</strong>");

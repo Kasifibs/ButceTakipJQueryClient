@@ -7,10 +7,12 @@ var UpdateCrudItemModal = function(){
   this.updateCrudItemActionObj = new UpdateCrudItemAction();
 
   this.updateCrudItemModalLoaded = function(){
+
     $("#updateCrudItemActionButton").click(that.updateCrudItem);
 
     $.get(that.getItemTypeSpecificFormUrl(), function(data){
         $("#crudItemUpdateModalSpecificFormDiv").append(data);
+        that.performInitializationsIfNeededAfterModalLoaded();
     });
 
     $('#updateCrudItemModal').on('show.bs.modal', function (event) {
@@ -21,6 +23,10 @@ var UpdateCrudItemModal = function(){
       var modalTitleText = that.getUpdateModalTitleText();
       that.modal.find('#updateCrudItemModalTitle').text(modalTitleText);
     })
+  }
+
+  this.performInitializationsIfNeededAfterModalLoaded = function(){
+    console.log("Override this function if needed-UpdateCrudItemModal.performInitializationsIfNeededAfterModalLoaded");
   }
 
   this.retrieveSelectedCrudItem = function(selectedItemId){

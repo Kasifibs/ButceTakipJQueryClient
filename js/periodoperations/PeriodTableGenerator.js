@@ -1,18 +1,6 @@
 var PeriodTableGenerator = function(){
 
-  var that = this;
-
-  this.generatePeriodTableFromResultData = function(resultData){
-    that.cleanOldTableBody();
-    var generatedRows = that.generateRowsFromResultData(resultData);
-    that.appendRowsToBody(generatedRows);
-  }
-
-  this.cleanOldTableBody = function(){
-    $('#periodResultTable tbody').empty();
-  }
-
-  this.generateRowsFromResultData = function(resultData){
+  PeriodTableGenerator.prototype.generateRowsFromResultData = function(resultData){
     var generatedRows = "";
 
     $.each(resultData, function(i, obj) {
@@ -25,10 +13,10 @@ var PeriodTableGenerator = function(){
 			row += "<td>" + beginDate + "</td>";
       row += "<td>" + endDate + "</td>";
 			row += "<td>";
-			row += "<input type='submit' itemId='"+obj.id+"' class='periodDeleteButton btn btn-danger' value='Sil' data-toggle='modal' data-target='#deletePeriodModal'>";
+			row += "<input type='submit' itemId='"+obj.id+"' class='btn btn-danger' value='Sil' data-toggle='modal' data-target='#deleteCrudItemModal'>";
 			row += "</td>";
 			row += "<td>";
-			row += "<input type='submit' itemId='"+obj.id+"' class='periodUpdateButton btn btn-warning' value='Güncelle' data-toggle='modal' data-target='#updatePeriodModal'>";
+			row += "<input type='submit' itemId='"+obj.id+"' class='btn btn-warning' value='Güncelle' data-toggle='modal' data-target='#updateCrudItemModal'>";
 			row += "</td>";
 			row += "</tr>";
 
@@ -36,9 +24,5 @@ var PeriodTableGenerator = function(){
     });
 
     return generatedRows;
-  }
-
-  this.appendRowsToBody = function(generatedRows){
-    $('#periodResultTable tbody').append(generatedRows);
   }
 }
