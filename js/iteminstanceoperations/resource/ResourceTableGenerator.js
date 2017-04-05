@@ -9,6 +9,7 @@ var ResourceTableGenerator = function(){
 
 			var row = "<tr>";
 			row += "<td>" + resource.id + "</td>";
+      row += "<td>" +resource.amount + "</td>";
       row += "<td>" +resource.resourceItem.name + "</td>";
       row += "<td>" +resource.period.name + "</td>";
 			row += "<td>";
