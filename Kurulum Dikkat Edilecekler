@@ -1,0 +1,20 @@
+Keystore oluşturulduktan sonra conf dosyası değişikliği:
+Tomcat 8.0.36'da düzgün çalışıyor. Üst versiyonlarda sıkıntı olabiliyor.
+
+<Connector port="8444" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" 
+			   keystoreFile="C:\Users\Tolga\BTClient.keystore"
+			   keystorePass="takip.24.butce" />
+        
+Tomcati sadece Https kullanmaya zorlamak için web.xml dosyası değişikliği:
+
+	  <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>securedapp</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
