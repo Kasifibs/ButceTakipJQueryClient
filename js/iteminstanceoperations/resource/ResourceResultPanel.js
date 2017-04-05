@@ -10,7 +10,7 @@ var ResourceResultPanel = function(){
     $.get("/ButceTakip/views/iteminstanceoperations/resource/ResourceResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-    var resourceRetrieveHandlerOperation = resourceableGeneratorObj.generateCrudItemTableFromResultData;
+    var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
     this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlik/liste", resourceRetrieveHandlerOperation);
   }
 
