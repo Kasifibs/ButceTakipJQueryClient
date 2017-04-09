@@ -1,6 +1,7 @@
 var ResourceQueryPanel = function(){
 
   var that = this;
+  var resourceTableGenerator = new ResourceTableGenerator();
 
   ResourceQueryPanel.prototype.loadCrudItemSpecificCriteriasDivSynchronously = function(){
     $.ajax({
@@ -15,7 +16,37 @@ var ResourceQueryPanel = function(){
   }
 
   ResourceQueryPanel.prototype.queryButtonClicked = function(){
+    var resourceItemId = $('#resourceQueryResourceItemSelect').find(":selected").val();
+    var periodId = $('#resourceQueryPeriodSelect').find(":selected").val();
 
+    var miktarMinInteger =$('#resourceQueryAmountMinIntegerPartTextField').val();
+    var miktarMinDecimal =$('#resourceQueryAmountMinDecimalPartTextField').val();
+
+    var miktarMaxInteger =$('#resourceQueryAmountMaxIntegerPartTextField').val();
+    var miktarMaxDecimal =$('#resourceQueryAmountMaxDecimalPartTextField').val();
+
+    var queryParams = {"resourceItemId":resourceItemId,
+                       "periodId":periodId,
+                       "minAmount":that.prepareMoneyValue(miktarMinInteger, miktarMinDecimal),
+                       "maxAmount":that.prepareMoneyValue(miktarMaxInteger, miktarMaxDecimal)};
+
+     var resourceRetrieveHandlerOperation = resourceTableGenerator.generateCrudItemTableFromResultData;
+     that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/varlik/sorgula", queryParams, resourceRetrieveHandlerOperation);
+  }
+
+  this.prepareMoneyValue = function(integerPart, decimalPart){
+    if(integerPart != "" && decimalPart != ""){
+      return integerPart + "." + decimalPart;
+    }
+    if(integerPart == "" && decimalPart != ""){
+      return "0." + decimalPart;
+    }
+    if(integerPart != "" && decimalPart == ""){
+      return integerPart + ".00";
+    }
+    if(integerPart == "" && decimalPart == ""){
+      return undefined;
+    }
   }
 
   this.retrieveResourceItemsToFillSelectInput = function(){
@@ -23,9 +54,10 @@ var ResourceQueryPanel = function(){
   }
 
   this.resourceItemsRetrieved = function(resultData){
-        $.each(resultData, function(i, resourceItem) {
-            $('#resourceQueryResourceItemSelect').append('<option value='+resourceItem.id+'>'+resourceItem.name+'</option>');
-        });
+      $('#resourceQueryResourceItemSelect').append('<option value="">Seçiniz</option>');
+      $.each(resultData, function(i, resourceItem) {
+          $('#resourceQueryResourceItemSelect').append('<option value='+resourceItem.id+'>'+resourceItem.name+'</option>');
+      });
   }
 
   this.retrievePeriodsToFillSelectInput = function(){
@@ -33,8 +65,9 @@ var ResourceQueryPanel = function(){
   }
 
   this.periodsRetrieved = function(resultData){
-        $.each(resultData, function(i, period) {
-            $('#resourceQueryPeriodSelect').append('<option value='+period.id+'>'+period.name+'</option>');
-        });
+      $('#resourceQueryPeriodSelect').append('<option value="">Seçiniz</option>');
+      $.each(resultData, function(i, period) {
+          $('#resourceQueryPeriodSelect').append('<option value='+period.id+'>'+period.name+'</option>');
+      });
   }
 }
