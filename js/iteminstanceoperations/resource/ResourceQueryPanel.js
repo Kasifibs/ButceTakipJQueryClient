@@ -1,6 +1,7 @@
-var ResourceQueryPanel = function(){
+var ResourceQueryPanel = function(moneyValuePreparatorObj){
 
   var that = this;
+  this.moneyValuePreparator = moneyValuePreparatorObj;
   var resourceTableGenerator = new ResourceTableGenerator();
 
   ResourceQueryPanel.prototype.loadCrudItemSpecificCriteriasDivSynchronously = function(){
@@ -27,26 +28,11 @@ var ResourceQueryPanel = function(){
 
     var queryParams = {"resourceItemId":resourceItemId,
                        "periodId":periodId,
-                       "minAmount":that.prepareMoneyValue(miktarMinInteger, miktarMinDecimal),
-                       "maxAmount":that.prepareMoneyValue(miktarMaxInteger, miktarMaxDecimal)};
+                       "minAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMinInteger, miktarMinDecimal),
+                       "maxAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMaxInteger, miktarMaxDecimal)};
 
      var resourceRetrieveHandlerOperation = resourceTableGenerator.generateCrudItemTableFromResultData;
      that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/varlik/sorgula", queryParams, resourceRetrieveHandlerOperation);
-  }
-
-  this.prepareMoneyValue = function(integerPart, decimalPart){
-    if(integerPart != "" && decimalPart != ""){
-      return integerPart + "." + decimalPart;
-    }
-    if(integerPart == "" && decimalPart != ""){
-      return "0." + decimalPart;
-    }
-    if(integerPart != "" && decimalPart == ""){
-      return integerPart + ".00";
-    }
-    if(integerPart == "" && decimalPart == ""){
-      return undefined;
-    }
   }
 
   this.retrieveResourceItemsToFillSelectInput = function(){

@@ -1,10 +1,11 @@
-var ResourceResultPanel = function(){
+var ResourceResultPanel = function(moneyValuePreparatorObj){
 
   var that = this;
 
   var that = this;
   var resourceTableGeneratorObj = new ResourceTableGenerator();
   var deleteResourceModalObj = new DeleteResourceModal();
+  var updateResourceModalObj = new UpdateResourceModal(moneyValuePreparatorObj);
 
   ResourceResultPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
     $.get("/ButceTakip/views/iteminstanceoperations/resource/ResourceResultPanel.html", function(data){
@@ -19,6 +20,6 @@ var ResourceResultPanel = function(){
   }
 
   ResourceResultPanel.prototype.updateCrudItemModalLoaded = function(){
-    
+    updateResourceModalObj.updateCrudItemModalLoaded();
   }
 }
