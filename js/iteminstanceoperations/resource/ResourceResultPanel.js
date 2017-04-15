@@ -1,8 +1,6 @@
 var ResourceResultPanel = function(moneyValuePreparatorObj){
 
   var that = this;
-
-  var that = this;
   var resourceTableGeneratorObj = new ResourceTableGenerator();
   var deleteResourceModalObj = new DeleteResourceModal();
   var updateResourceModalObj = new UpdateResourceModal(moneyValuePreparatorObj);
