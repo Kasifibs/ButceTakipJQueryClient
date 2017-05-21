@@ -20,4 +20,4 @@ Tomcati sadece Https kullanmaya zorlamak için web.xml dosyası değişikliği:
 	</security-constraint>
 
 
-Deneme
+
