@@ -1,6 +1,7 @@
-var NewPeriodModal = function(){
+var NewPeriodModal = function(moneyValuePreparator){
 
   var that = this;
+  this.moneyValuePreparator = moneyValuePreparatorObj;
   var periodTableGeneratorObj = new PeriodTableGenerator();
 
   NewPeriodModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
@@ -16,10 +17,14 @@ var NewPeriodModal = function(){
     var beginDate = $('#addPeriodBeginDatePicker').data("DateTimePicker").date();
     var endDate = $('#addPeriodEndDatePicker').data("DateTimePicker").date();
 
+    var beginAmountInteger =$('#addBeginAmountIntegerPartTextField').val();
+    var beginAmountDecimal =$('#addBeginAmountDecimalPartTextField').val();
+
     var newPeriod ={
       "name":name,
       "beginDate":beginDate.format("YYYY-MM-DD"),
-      "endDate":endDate.format("YYYY-MM-DD")
+      "endDate":endDate.format("YYYY-MM-DD"),
+      "beginAmount":that.moneyValuePreparator.prepareMoneyValue(beginAmountInteger, beginAmountDecimal)
     }
 
     that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/period/kaydet", newPeriod, that.saveSuccess, that.saveFail);

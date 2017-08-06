@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+      var moneyValuePreparator = new MoneyValuePreparator();
+
       NewPeriodModal.prototype = new NewCrudItemModal();
       NewPeriodModal.prototype.constructor = NewPeriodModal;
 
@@ -19,7 +21,7 @@ $(document).ready(function() {
 
       PeriodBottomPanel.prototype = new CrudItemBottomPanel();
       PeriodBottomPanel.prototype.constructor = PeriodBottomPanel;
-      var periodBottomPanelObj = new PeriodBottomPanel();
+      var periodBottomPanelObj = new PeriodBottomPanel(moneyValuePreparator);
 
       PeriodResultPanel.prototype = new CrudItemResultPanel();
       PeriodResultPanel.prototype.constructor = PeriodResultPanel;
