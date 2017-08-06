@@ -25,7 +25,7 @@ $(document).ready(function() {
 
       PeriodResultPanel.prototype = new CrudItemResultPanel();
       PeriodResultPanel.prototype.constructor = PeriodResultPanel;
-      var periodResultPanelObj = new PeriodResultPanel();
+      var periodResultPanelObj = new PeriodResultPanel(moneyValuePreparator);
 
       var crudItemPageLoaderObj = new CrudItemPageLoader(periodQueryPanelObj, periodResultPanelObj, periodBottomPanelObj);
       crudItemPageLoaderObj.loadTemplates();

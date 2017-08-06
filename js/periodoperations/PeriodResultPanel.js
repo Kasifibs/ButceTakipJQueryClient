@@ -1,9 +1,9 @@
-var PeriodResultPanel = function(){
+var PeriodResultPanel = function(moneyValuePreparator){
 
     var that = this;
     var periodTableGeneratorObj = new PeriodTableGenerator();
     var deletePeriodModalObj = new DeletePeriodModal();
-    var updatePeriodModalObj = new UpdatePeriodModal();
+    var updatePeriodModalObj = new UpdatePeriodModal(moneyValuePreparator);
 
   PeriodResultPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
     $.get("/ButceTakip/views/periodoperations/PeriodResultPanel.html", function(data){

@@ -1,4 +1,4 @@
-var NewPeriodModal = function(moneyValuePreparator){
+var NewPeriodModal = function(moneyValuePreparatorObj){
 
   var that = this;
   this.moneyValuePreparator = moneyValuePreparatorObj;

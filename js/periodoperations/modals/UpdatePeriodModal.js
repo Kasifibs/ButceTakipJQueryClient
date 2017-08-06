@@ -1,6 +1,7 @@
-var UpdatePeriodModal = function(){
+var UpdatePeriodModal = function(moneyValuePreparatorObj){
 
   var that = this;
+  this.moneyValuePreparator = moneyValuePreparatorObj;
   var periodTableGeneratorObj = new PeriodTableGenerator();
 
   UpdatePeriodModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
@@ -15,10 +16,14 @@ var UpdatePeriodModal = function(){
     that.currentPeriodId = retrievedPeriod.id;
     var retrievedBeginDate = moment(retrievedPeriod.beginDate).format('DD.MM.YYYY');
     var retrievedEndDate = moment(retrievedPeriod.endDate).format('DD.MM.YYYY');
+    var beginAmount = retrievedPeriod.beginAmount + "";
+    var amountParts = beginAmount.split('.');
 
     that.modal.find('#updatePeriodNameTextField').val(retrievedPeriod.name);
     that.modal.find('#updatePeriodBeginDatePicker').data("DateTimePicker").date(retrievedBeginDate);
     that.modal.find('#updatePeriodEndDatePicker').data("DateTimePicker").date(retrievedEndDate);
+    that.modal.find('#updateBeginAmountIntegerPartTextField').val(amountParts[0]);
+    that.modal.find('#updateBeginAmountDecimalPartTextField').val(amountParts[1]);
   }
 
   UpdatePeriodModal.prototype.getItemTypeSpecificFormUrl = function(){
@@ -30,11 +35,15 @@ var UpdatePeriodModal = function(){
     var beginDate = $('#updatePeriodBeginDatePicker').data("DateTimePicker").date();
     var endDate = $('#updatePeriodEndDatePicker').data("DateTimePicker").date();
 
+    var beginAmountInteger =$('#updateBeginAmountIntegerPartTextField').val();
+    var beginAmountDecimal =$('#updateBeginAmountDecimalPartTextField').val();
+
     var updatedPeriod ={
       "id":that.currentPeriodId,
       "name":name,
       "beginDate":beginDate.format("YYYY-MM-DD"),
-      "endDate":endDate.format("YYYY-MM-DD")
+      "endDate":endDate.format("YYYY-MM-DD"),
+      "beginAmount":that.moneyValuePreparator.prepareMoneyValue(beginAmountInteger, beginAmountDecimal)
     }
 
     that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/period/guncelle", updatedPeriod, that.saveSuccess, that.saveFail);
