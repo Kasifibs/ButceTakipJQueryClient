@@ -5,3 +5,7 @@
 .hiddenElement{
   display: none;
 }
+
+.standartTopMargin{
+  margin-top: 20px;
+}

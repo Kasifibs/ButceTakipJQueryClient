@@ -8,7 +8,7 @@ var PeriodTableGenerator = function(){
       var endDate = moment(period.endDate).format('DD.MM.YYYY');
 
 			var row = "<tr>";
-			row += "<td>" + period.id + "</td>";
+			row += "<td>" + "<a href='/ButceTakip/views/perioddetailoperation/PeriodDetailOperation.html?id="+ period.id +"'>"+ period.id +"</a>" + "</td>";
       row += "<td>" +period.name + "</td>";
 			row += "<td>" + beginDate + "</td>";
       row += "<td>" + endDate + "</td>";
