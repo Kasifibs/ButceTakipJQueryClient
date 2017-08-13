@@ -1,27 +1,31 @@
-var PeriodDetailPageLoader = function(periodDetailPanel, periodResourcesArea){
+var PeriodDetailPageLoader = function(periodDetailInformationArea, periodResourcesArea){
 
   var that = this;
 
   this.mainTemplateObj = new MainTemplate();
-  this.periodDetailPanelObj = periodDetailPanel;
+  this.periodDetailInformationAreaObj = periodDetailInformationArea;
   this.periodResourcesAreaObj = periodResourcesArea;
 
 
   this.loadTemplates = function(){
-		$('body').load('/ButceTakip/views/common/MainTemplate.html', function(){that.mainTemplateObj.mainTemplateLoaded(that.loadPeriodDetailPanelArea)});
+		$('body').load('/ButceTakip/views/common/MainTemplate.html', function(){that.mainTemplateObj.mainTemplateLoaded(that.loadPeriodDetail)});
 	}
 
-  this.loadPeriodDetailPanelArea = function(){
-    $.get("/ButceTakip/views/perioddetailoperation/PeriodDetailPanel.html", function(data){
+  this.loadPeriodDetail = function(){
+    $.get("/ButceTakip/views/perioddetailoperation/PeriodDetail.html", function(data){
        $("#pageContent").append(data);
-       that.periodDetailPanelObj.detailPanelLoaded();
-       that.loadPeriodResourcesArea();
+       that.periodDetailLoaded();
     });
   }
 
-  this.loadPeriodResourcesArea = function(){
+  this.periodDetailLoaded = function(){
+    $.get("/ButceTakip/views/perioddetailoperation/PeriodDetailInformationArea.html", function(data){
+       $("#periodDetailInformationArea").append(data);
+       that.periodDetailInformationAreaObj.detailInformationAreaLoaded();
+    });
+
     $.get("/ButceTakip/views/perioddetailoperation/PeriodResourcesArea.html", function(data){
-       $("#pageContent").append(data);
+       $("#periodResourcesArea").append(data);
         that.periodResourcesAreaObj.resourcesAreaLoaded();
     });
   }

@@ -6,10 +6,10 @@ $(document).ready(function() {
 
       var crudItemRetrieverObj = new CrudItemRetriever();
 
-      var periodDetailPanelObj = new PeriodDetailPanel(id, crudItemRetrieverObj);
+      var periodDetailInformationAreaObj = new PeriodDetailInformationArea(id, crudItemRetrieverObj);
       var periodResourcesAreaObj = new PeriodResourcesArea(id, crudItemRetrieverObj);
 
-      var periodDetailPageLoaderObj = new PeriodDetailPageLoader(periodDetailPanelObj, periodResourcesAreaObj);
+      var periodDetailPageLoaderObj = new PeriodDetailPageLoader(periodDetailInformationAreaObj, periodResourcesAreaObj);
       periodDetailPageLoaderObj.loadTemplates();
 	}
 );

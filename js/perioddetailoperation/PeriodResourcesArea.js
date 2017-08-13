@@ -3,14 +3,23 @@ var PeriodResourcesArea = function(selectedPeriodId, crudItemRetriever){
   var that = this;
   this.periodId = selectedPeriodId;
   this.crudItemRetrieverObj = crudItemRetriever;
-  this.resourceIdAmountResItemTableObj = new ResourceIdAmountResItemTableGenerator("periodResourcesTableDiv");
+  this.resourceIdAmountResItemTableGeneratorObj = new ResourceIdAmountResItemTableGenerator("periodResorcesTableArea");
 
-  this.retrieveAndBindPeriodResourcesData = function(){
-    var resourceRetrieveHandlerOperation = that.resourceIdAmountResItemTableObj.generateTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlik/liste", resourceRetrieveHandlerOperation);
+  this.retrievePeriodResourcesData = function(){
+    var queryParams = {"periodId":that.periodId};
+
+    this.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/period/donemVarlikBilgisiniGetir", queryParams, that.bindPeriodResourcesData);
+  }
+
+  this.bindPeriodResourcesData = function(retrievedData){
+    that.resourceIdAmountResItemTableGeneratorObj.generateTableFromResultData(retrievedData.periodResourcesList);
+
+    $("#periodEndAmountCalculationLabel").text(retrievedData.periodEndAmount);
+    $("#periodBeginAmountCalculationLabel").text(retrievedData.periodBeginAmount);
+    $("#periodDifferenceAmountCalculationLabel").text(retrievedData.periodResult);
   }
 
   this.resourcesAreaLoaded = function(){
-     that.retrieveAndBindPeriodResourcesData();
+     that.retrievePeriodResourcesData();
   }
 }

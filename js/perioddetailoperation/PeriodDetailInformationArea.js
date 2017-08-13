@@ -1,4 +1,4 @@
-var PeriodDetailPanel = function(selectedPeriodId, crudItemRetriever){
+var PeriodDetailInformationArea = function(selectedPeriodId, crudItemRetriever){
 
    var that = this;
    this.periodId = selectedPeriodId;
@@ -22,7 +22,7 @@ var PeriodDetailPanel = function(selectedPeriodId, crudItemRetriever){
 
    }
 
-   this.detailPanelLoaded = function(){
+   this.detailInformationAreaLoaded = function(){
       that.retrieveAndBindPeriodData();
    }
 
