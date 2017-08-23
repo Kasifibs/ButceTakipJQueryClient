@@ -8,8 +8,10 @@ $(document).ready(function() {
 
       var periodDetailInformationAreaObj = new PeriodDetailInformationArea(id, crudItemRetrieverObj);
       var periodResourcesAreaObj = new PeriodResourcesArea(id, crudItemRetrieverObj);
+      var periodIncomesAreaObj = new PeriodIncomesArea(id, crudItemRetrieverObj);
+      var periodExpensesAreaObj = new PeriodExpensesArea(id, crudItemRetrieverObj);
 
-      var periodDetailPageLoaderObj = new PeriodDetailPageLoader(periodDetailInformationAreaObj, periodResourcesAreaObj);
+      var periodDetailPageLoaderObj = new PeriodDetailPageLoader(periodDetailInformationAreaObj, periodResourcesAreaObj, periodIncomesAreaObj, periodExpensesAreaObj);
       periodDetailPageLoaderObj.loadTemplates();
 	}
 );

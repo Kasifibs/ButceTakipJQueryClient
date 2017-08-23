@@ -1,10 +1,12 @@
-var PeriodDetailPageLoader = function(periodDetailInformationArea, periodResourcesArea){
+var PeriodDetailPageLoader = function(periodDetailInformationArea, periodResourcesArea, periodIncomesArea, periodExpensesArea){
 
   var that = this;
 
   this.mainTemplateObj = new MainTemplate();
   this.periodDetailInformationAreaObj = periodDetailInformationArea;
   this.periodResourcesAreaObj = periodResourcesArea;
+  this.periodIncomesAreaObj = periodIncomesArea;
+  this.periodExpensesAreaObj = periodExpensesArea;
 
 
   this.loadTemplates = function(){
@@ -27,6 +29,16 @@ var PeriodDetailPageLoader = function(periodDetailInformationArea, periodResourc
     $.get("/ButceTakip/views/perioddetailoperation/PeriodResourcesArea.html", function(data){
        $("#periodResourcesArea").append(data);
         that.periodResourcesAreaObj.resourcesAreaLoaded();
+    });
+
+    $.get("/ButceTakip/views/perioddetailoperation/PeriodIncomesArea.html", function(data){
+       $("#periodIncomesArea").append(data);
+        that.periodIncomesAreaObj.incomesAreaLoaded();
+    });
+
+    $.get("/ButceTakip/views/perioddetailoperation/PeriodExpensesArea.html", function(data){
+       $("#periodExpensesArea").append(data);
+        that.periodExpensesAreaObj.expensesAreaLoaded();
     });
   }
 }
