@@ -10,7 +10,7 @@ var IncomeResultPanel = function(moneyValuePreparatorObj){
           $("#crudItemResultTableHeaderRow").append(data);
     });
     var incomeRetrieveHandlerOperation = incomeTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelir/liste", incomeRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelir/liste", incomeRetrieveHandlerOperation);
   }
 
   IncomeResultPanel.prototype.deleteCrudItemModalLoaded = function(){

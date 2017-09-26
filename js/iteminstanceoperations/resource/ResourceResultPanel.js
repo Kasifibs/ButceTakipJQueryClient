@@ -10,7 +10,7 @@ var ResourceResultPanel = function(moneyValuePreparatorObj){
           $("#crudItemResultTableHeaderRow").append(data);
     });
     var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlik/liste", resourceRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
   }
 
   ResourceResultPanel.prototype.deleteCrudItemModalLoaded = function(){

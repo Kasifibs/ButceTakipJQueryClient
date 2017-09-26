@@ -5,6 +5,7 @@ var UpdateCrudItemModal = function(){
   this.selectedItemId = 0;
   this.crudItemRetrieverObj = new CrudItemRetriever();
   this.updateCrudItemActionObj = new UpdateCrudItemAction();
+  this.utils = new Utils();
 
   this.updateCrudItemModalLoaded = function(){
 

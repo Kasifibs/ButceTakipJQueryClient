@@ -4,7 +4,7 @@ var DeleteResourceItemModal = function(){
   var resourceItemTableGeneratorObj = new ResourceItemTableGenerator();
 
   DeleteResourceItemModal.prototype.deleteItem = function(){
-    that.deleteCrudItemActionObj.deleteCrudItem("https://localhost:8443/ButceTakipServer/varlikKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
+    that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/varlikKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
   }
 
   DeleteResourceItemModal.prototype.getDeleteModalTitleText = function(){
@@ -21,6 +21,6 @@ var DeleteResourceItemModal = function(){
 
   DeleteResourceItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
   }
 }

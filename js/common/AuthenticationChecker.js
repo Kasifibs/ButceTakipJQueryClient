@@ -1,6 +1,7 @@
 var AuthenticationChecker = function(){
 
   var that = this;
+  var utils = new Utils();
 
   this.checkStatus = function(){
     var restConfig ={
@@ -8,7 +9,7 @@ var AuthenticationChecker = function(){
             crossDomain: true,
             async:false,
             type:"GET",
-            url:"https://localhost:8443/ButceTakipServer/oturum/kontrol",
+            url:utils.getServerBaseURL() + "/oturum/kontrol",
             dataType:"json",
 						success: that.checkSuccess,
 						error: that.checkFailed

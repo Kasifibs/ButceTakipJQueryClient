@@ -3,7 +3,7 @@ var DeleteResourceModal = function(){
   var resourceTableGeneratorObj = new ResourceTableGenerator();
 
   DeleteResourceModal.prototype.deleteItem = function(){
-    that.deleteCrudItemActionObj.deleteCrudItem("https://localhost:8443/ButceTakipServer/varlik/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
+    that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/varlik/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
   }
 
   DeleteResourceModal.prototype.getDeleteModalTitleText = function(){
@@ -20,6 +20,6 @@ var DeleteResourceModal = function(){
 
   DeleteResourceModal.prototype.retrieveItemsToUpdateScreen = function(){
     var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlik/liste", resourceRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
   }
 }

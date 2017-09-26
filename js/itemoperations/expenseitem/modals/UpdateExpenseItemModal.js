@@ -4,7 +4,7 @@ var UpdateExpenseItemModal = function(){
   var expenseItemTableGeneratorObj = new ExpenseItemTableGenerator();
 
   UpdateExpenseItemModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
-    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/harcamaKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
+    that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/harcamaKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
   }
 
   UpdateExpenseItemModal.prototype.fillModalWithCurrentCrudItem = function(retrievedItem){
@@ -20,7 +20,7 @@ var UpdateExpenseItemModal = function(){
     var name = $('#updateExpenseItemNameTextField').val();
     var updatedExpenseItem = {"id":that.currentCrudItemId,"name":name};
 
-    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/harcamaKalemi/guncelle", updatedExpenseItem, that.saveSuccess, that.saveFail);
+    that.updateCrudItemActionObj.updateCrudItem(that.utils.getServerBaseURL() + "/harcamaKalemi/guncelle", updatedExpenseItem, that.saveSuccess, that.saveFail);
   }
 
   UpdateExpenseItemModal.prototype.getUpdateModalTitleText = function(){
@@ -33,7 +33,7 @@ var UpdateExpenseItemModal = function(){
 
   UpdateExpenseItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var expenseItemRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
   }
 
 }

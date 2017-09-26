@@ -11,7 +11,7 @@ var NewResourceItemModal = function(){
     var name = $('#addResourceItemNameTextField').val();
     var newResourceItem = {"name":name};
 
-    that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/varlikKalemi/kaydet", newResourceItem, that.saveSuccess, that.saveFail);
+    that.saveCrudItemActionObj.saveCrudItem(that.utils.getServerBaseURL() + "/varlikKalemi/kaydet", newResourceItem, that.saveSuccess, that.saveFail);
   }
 
   NewResourceItemModal.prototype.getSaveModalTitleText = function(){
@@ -24,7 +24,7 @@ var NewResourceItemModal = function(){
 
   NewResourceItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
   }
 
 }

@@ -33,11 +33,11 @@ var IncomeQueryPanel = function(moneyValuePreparatorObj){
                        "maxAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMaxInteger, miktarMaxDecimal)};
 
      var incomeRetrieveHandlerOperation = incomeTableGenerator.generateCrudItemTableFromResultData;
-     that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/gelir/sorgula", queryParams, incomeRetrieveHandlerOperation);
+     that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/gelir/sorgula", queryParams, incomeRetrieveHandlerOperation);
   }
 
   this.retrieveIncomeItemsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelirKalemi/liste", that.incomeItemsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", that.incomeItemsRetrieved);
   }
 
   this.incomeItemsRetrieved = function(resultData){
@@ -48,7 +48,7 @@ var IncomeQueryPanel = function(moneyValuePreparatorObj){
   }
 
   this.retrievePeriodsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", that.periodsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", that.periodsRetrieved);
   }
 
   this.periodsRetrieved = function(resultData){

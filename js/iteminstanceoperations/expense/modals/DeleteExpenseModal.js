@@ -4,7 +4,7 @@ var DeleteExpenseModal = function(){
   var expenseTableGeneratorObj = new ExpenseTableGenerator();
 
   DeleteExpenseModal.prototype.deleteItem = function(){
-    that.deleteCrudItemActionObj.deleteCrudItem("https://localhost:8443/ButceTakipServer/gider/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
+    that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/gider/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
   }
 
   DeleteExpenseModal.prototype.getDeleteModalTitleText = function(){
@@ -21,6 +21,6 @@ var DeleteExpenseModal = function(){
 
   DeleteExpenseModal.prototype.retrieveItemsToUpdateScreen = function(){
     var expenseRetrieveHandlerOperation = expenseTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gider/liste", expenseRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gider/liste", expenseRetrieveHandlerOperation);
   }
 }

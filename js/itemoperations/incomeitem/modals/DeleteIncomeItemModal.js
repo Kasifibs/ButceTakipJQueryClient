@@ -4,7 +4,7 @@ var DeleteIncomeItemModal = function(){
   var incomeItemTableGeneratorObj = new IncomeItemTableGenerator();
 
   DeleteIncomeItemModal.prototype.deleteItem = function(){
-    that.deleteCrudItemActionObj.deleteCrudItem("https://localhost:8443/ButceTakipServer/gelirKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
+    that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/gelirKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
   }
 
   DeleteIncomeItemModal.prototype.getDeleteModalTitleText = function(){
@@ -21,6 +21,6 @@ var DeleteIncomeItemModal = function(){
 
   DeleteIncomeItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
   }
 }

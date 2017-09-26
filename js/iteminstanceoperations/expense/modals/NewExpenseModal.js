@@ -24,7 +24,7 @@ var NewExpenseModal = function(moneyValuePreparatorObj){
                        "period":{"id":periodId},
                        "amount":that.moneyValuePreparator.prepareMoneyValue(amountInteger, amountDecimal)};
 
-    that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/gider/kaydet", newExpense, that.saveSuccess, that.saveFail);
+    that.saveCrudItemActionObj.saveCrudItem(that.utils.getServerBaseURL() + "/gider/kaydet", newExpense, that.saveSuccess, that.saveFail);
   }
 
   NewExpenseModal.prototype.getSaveModalTitleText = function(){
@@ -37,11 +37,11 @@ var NewExpenseModal = function(moneyValuePreparatorObj){
 
   NewExpenseModal.prototype.retrieveItemsToUpdateScreen = function(){
     var expenseRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gider/liste", expenseRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gider/liste", expenseRetrieveHandlerOperation);
   }
 
   this.retrieveExpenseItemsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/harcamaKalemi/liste", that.expenseItemsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/harcamaKalemi/liste", that.expenseItemsRetrieved);
   }
 
   this.expenseItemsRetrieved = function(resultData){
@@ -52,7 +52,7 @@ var NewExpenseModal = function(moneyValuePreparatorObj){
   }
 
   this.retrievePeriodsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", that.periodsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", that.periodsRetrieved);
   }
 
   this.periodsRetrieved = function(resultData){

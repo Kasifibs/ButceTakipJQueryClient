@@ -4,6 +4,7 @@ var DeleteCrudItemModal = function(){
     this.selectedItemId = 0;
     this.crudItemRetrieverObj = new CrudItemRetriever();
     this.deleteCrudItemActionObj = new DeleteCrudItemAction();
+    this.utils = new Utils();
 
     this.deleteCrudItemModalLoaded = function(){
       $('#deleteCrudItemModalActionButton').click(that.deleteItem);

@@ -4,7 +4,7 @@ var DeleteExpenseItemModal = function(){
   var expenseItemTableGeneratorObj = new ExpenseItemTableGenerator();
 
   DeleteExpenseItemModal.prototype.deleteItem = function(){
-    that.deleteCrudItemActionObj.deleteCrudItem("https://localhost:8443/ButceTakipServer/harcamaKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
+    that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/harcamaKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
   }
 
   DeleteExpenseItemModal.prototype.getDeleteModalTitleText = function(){
@@ -21,6 +21,6 @@ var DeleteExpenseItemModal = function(){
 
   DeleteExpenseItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var expenseItemRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
   }
 }

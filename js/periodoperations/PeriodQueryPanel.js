@@ -30,7 +30,7 @@ var PeriodQueryPanel = function(){
 
 
     var periodItemRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/period/sorgula", queryParams, periodItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/period/sorgula", queryParams, periodItemRetrieveHandlerOperation);
   }
 
   this.getFormattedDate = function(date){

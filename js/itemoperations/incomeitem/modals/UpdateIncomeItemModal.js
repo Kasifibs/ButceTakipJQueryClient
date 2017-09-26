@@ -4,7 +4,7 @@ var UpdateIncomeItemModal = function(){
   var incomeItemTableGeneratorObj = new IncomeItemTableGenerator();
 
   UpdateIncomeItemModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
-    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/gelirKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
+    that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/gelirKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
   }
 
   UpdateIncomeItemModal.prototype.fillModalWithCurrentCrudItem = function(retrievedItem){
@@ -20,7 +20,7 @@ var UpdateIncomeItemModal = function(){
     var name = $('#updateIncomeItemNameTextField').val();
     var updatedIncomeItem = {"id":that.currentCrudItemId,"name":name};
 
-    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/gelirKalemi/guncelle", updatedIncomeItem, that.saveSuccess, that.saveFail);
+    that.updateCrudItemActionObj.updateCrudItem(that.utils.getServerBaseURL() + "/gelirKalemi/guncelle", updatedIncomeItem, that.saveSuccess, that.saveFail);
   }
 
   UpdateIncomeItemModal.prototype.getUpdateModalTitleText = function(){
@@ -33,7 +33,7 @@ var UpdateIncomeItemModal = function(){
 
   UpdateIncomeItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
   }
 
 }

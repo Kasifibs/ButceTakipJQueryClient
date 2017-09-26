@@ -19,6 +19,6 @@ var ExpenseItemQueryPanel = function(){
     var queryParams = {"name":name};
 
     var expenseItemRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/harcamaKalemi/sorgula", queryParams, expenseItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/harcamaKalemi/sorgula", queryParams, expenseItemRetrieveHandlerOperation);
   }
 }

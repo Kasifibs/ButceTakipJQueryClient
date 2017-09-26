@@ -4,11 +4,12 @@ var PeriodResourcesArea = function(selectedPeriodId, crudItemRetriever){
   this.periodId = selectedPeriodId;
   this.crudItemRetrieverObj = crudItemRetriever;
   this.resourceIdAmountResItemTableGeneratorObj = new ResourceIdAmountResItemTableGenerator("periodResorcesTableArea");
+  this.utils = new Utils();
 
   this.retrievePeriodResourcesData = function(){
     var queryParams = {"periodId":that.periodId};
 
-    this.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/period/donemVarlikBilgisiniGetir", queryParams, that.bindPeriodResourcesData);
+    this.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/period/donemVarlikBilgisiniGetir", queryParams, that.bindPeriodResourcesData);
   }
 
   this.bindPeriodResourcesData = function(retrievedData){

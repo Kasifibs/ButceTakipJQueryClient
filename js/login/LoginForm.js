@@ -1,5 +1,6 @@
 var LoginForm = function(){
   var that = this;
+  var utils = new Utils();
 
   this.performLogin = function(){
     var username = $("#usernameTxt").val();
@@ -9,7 +10,7 @@ var LoginForm = function(){
             xhrFields: {withCredentials: true},
             crossDomain: true,
             type:"GET",
-            url:"https://localhost:8443/ButceTakipServer/oturum/girisYap",
+            url:utils.getServerBaseURL() + "/oturum/girisYap",
             headers: {"Authorization": "Basic " + btoa(username + ":" + password)},
             dataType:"json",
 						success: that.loginSuccess,

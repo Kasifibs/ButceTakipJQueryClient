@@ -4,6 +4,7 @@ var NewCrudItemModal = function(){
   this.saveCounter = 0;
   this.crudItemRetrieverObj = new CrudItemRetriever();
   this.saveCrudItemActionObj = new SaveCrudItemAction();
+  this.utils = new Utils();
 
   this.newCrudItemModalLoaded = function(){
     $("#saveNewCrudItemActionButton").click(that.saveCrudItem);

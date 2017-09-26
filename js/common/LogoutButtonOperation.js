@@ -1,5 +1,6 @@
 var LogoutButtonOperation = function(){
   var that = this;
+  var utils = new Utils();
 
   this.logoutButtonLoaded = function(){
     $("#logoutButton").click(that.logoutButtonClicked);
@@ -11,7 +12,7 @@ var LogoutButtonOperation = function(){
             crossDomain: true,
             async:false,
             type:"GET",
-            url:"https://localhost:8443/ButceTakipServer/oturum/oturumKapat",
+            url:utils.getServerBaseURL() + "/oturum/oturumKapat",
             dataType:"json",
 						success: that.logoutSuccess
 		};

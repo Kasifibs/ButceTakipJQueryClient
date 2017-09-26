@@ -27,7 +27,7 @@ var NewPeriodModal = function(moneyValuePreparatorObj){
       "beginAmount":that.moneyValuePreparator.prepareMoneyValue(beginAmountInteger, beginAmountDecimal)
     }
 
-    that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/period/kaydet", newPeriod, that.saveSuccess, that.saveFail);
+    that.saveCrudItemActionObj.saveCrudItem(that.utils.getServerBaseURL() + "/period/kaydet", newPeriod, that.saveSuccess, that.saveFail);
   }
 
   NewPeriodModal.prototype.getSaveModalTitleText = function(){
@@ -40,7 +40,7 @@ var NewPeriodModal = function(moneyValuePreparatorObj){
 
   NewPeriodModal.prototype.retrieveItemsToUpdateScreen = function(){
     var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", periodRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", periodRetrieveHandlerOperation);
   }
 
   this.initDatePickers = function(){

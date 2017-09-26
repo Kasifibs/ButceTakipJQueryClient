@@ -19,6 +19,6 @@ var ResourceItemQueryPanel = function(){
     var queryParams = {"name":name};
 
     var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/varlikKalemi/sorgula", queryParams, resourceItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/varlikKalemi/sorgula", queryParams, resourceItemRetrieveHandlerOperation);
   }
 }

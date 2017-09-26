@@ -2,6 +2,7 @@ var CrudItemResultPanel = function(){
 
   var that = this;
   this.crudItemRetrieverObj = new CrudItemRetriever();
+  this.utils = new Utils();
 
   this.crudItemResultPanelLoaded = function(){
     that.loadCrudItemSpecificCriteriasDiv();

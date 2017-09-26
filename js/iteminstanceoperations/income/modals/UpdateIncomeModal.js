@@ -10,7 +10,7 @@ var UpdateIncomeModal = function(moneyValuePreparatorObj){
   }
 
   UpdateIncomeModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
-    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/gelir/gelir/", selectedItemId, that.fillModalWithCurrentCrudItem);
+    that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/gelir/gelir/", selectedItemId, that.fillModalWithCurrentCrudItem);
   }
 
   UpdateIncomeModal.prototype.fillModalWithCurrentCrudItem = function(retrievedItem){
@@ -39,7 +39,7 @@ var UpdateIncomeModal = function(moneyValuePreparatorObj){
                           "period":{"id":periodId},
                           "amount":that.moneyValuePreparator.prepareMoneyValue(amountInteger, amountDecimal)};;
 
-    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/gelir/guncelle", updatedIncome, that.saveSuccess, that.saveFail);
+    that.updateCrudItemActionObj.updateCrudItem(that.utils.getServerBaseURL() + "/gelir/guncelle", updatedIncome, that.saveSuccess, that.saveFail);
   }
 
   UpdateIncomeModal.prototype.getUpdateModalTitleText = function(){
@@ -52,11 +52,11 @@ var UpdateIncomeModal = function(moneyValuePreparatorObj){
 
   UpdateIncomeModal.prototype.retrieveItemsToUpdateScreen = function(){
     var incomeRetrieveHandlerOperation = incomeTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelir/liste", incomeRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelir/liste", incomeRetrieveHandlerOperation);
   }
 
   this.retrieveIncomeItemsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelirKalemi/liste", that.incomeItemsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", that.incomeItemsRetrieved);
   }
 
   this.incomeItemsRetrieved = function(resultData){
@@ -67,7 +67,7 @@ var UpdateIncomeModal = function(moneyValuePreparatorObj){
   }
 
   this.retrievePeriodsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", that.periodsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", that.periodsRetrieved);
   }
 
   this.periodsRetrieved = function(resultData){

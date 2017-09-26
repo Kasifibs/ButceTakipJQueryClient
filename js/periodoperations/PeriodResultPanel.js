@@ -11,7 +11,7 @@ var PeriodResultPanel = function(moneyValuePreparator){
     });
 
     var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", periodRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", periodRetrieveHandlerOperation);
   }
 
   PeriodResultPanel.prototype.deleteCrudItemModalLoaded = function(){

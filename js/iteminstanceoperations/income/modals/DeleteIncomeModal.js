@@ -4,7 +4,7 @@ var DeleteIncomeModal = function(){
   var incomeTableGeneratorObj = new IncomeTableGenerator();
 
   DeleteIncomeModal.prototype.deleteItem = function(){
-    that.deleteCrudItemActionObj.deleteCrudItem("https://localhost:8443/ButceTakipServer/gelir/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
+    that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/gelir/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
   }
 
   DeleteIncomeModal.prototype.getDeleteModalTitleText = function(){
@@ -21,6 +21,6 @@ var DeleteIncomeModal = function(){
 
   DeleteIncomeModal.prototype.retrieveItemsToUpdateScreen = function(){
     var incomeRetrieveHandlerOperation = incomeTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelir/liste", incomeRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelir/liste", incomeRetrieveHandlerOperation);
   }
 }

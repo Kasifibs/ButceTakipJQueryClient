@@ -4,11 +4,12 @@ var PeriodIncomesArea = function(selectedPeriodId, crudItemRetriever){
   this.periodId = selectedPeriodId;
   this.crudItemRetrieverObj = crudItemRetriever;
   this.incomeIdAmountIncomeItemTableGeneratorObj = new IncomeIdAmountIncomeItemTableGenerator("periodIncomesTableArea");
+  this.utils = new Utils();
 
   this.retrievePeriodIncomesData = function(){
     var queryParams = {"periodId":that.periodId};
 
-    this.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/period/donemGelirBilgisiniGetir", queryParams, that.bindPeriodIncomesData);
+    this.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/period/donemGelirBilgisiniGetir", queryParams, that.bindPeriodIncomesData);
   }
 
   this.bindPeriodIncomesData = function(retrievedData){

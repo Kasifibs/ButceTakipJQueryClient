@@ -2,6 +2,7 @@ var CrudItemQueryPanel = function(){
 
   var that = this;
   this.crudItemRetrieverObj = new CrudItemRetriever();
+  this.utils = new Utils();
 
   this.crudItemQueryPanelLoaded = function(){
     that.loadCrudItemSpecificCriteriasDivSynchronously();

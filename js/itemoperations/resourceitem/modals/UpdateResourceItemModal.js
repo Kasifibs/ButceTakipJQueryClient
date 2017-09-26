@@ -4,7 +4,7 @@ var UpdateResourceItemModal = function(){
   var resourceItemTableGeneratorObj = new ResourceItemTableGenerator();
 
   UpdateResourceItemModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
-    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/varlikKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
+    that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/varlikKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
   }
 
   UpdateResourceItemModal.prototype.fillModalWithCurrentCrudItem = function(retrievedItem){
@@ -20,7 +20,7 @@ var UpdateResourceItemModal = function(){
     var name = $('#updateResourceItemNameTextField').val();
     var updatedResourceItem = {"id":that.currentCrudItemId,"name":name};
 
-    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/varlikKalemi/guncelle", updatedResourceItem, that.saveSuccess, that.saveFail);
+    that.updateCrudItemActionObj.updateCrudItem(that.utils.getServerBaseURL() + "/varlikKalemi/guncelle", updatedResourceItem, that.saveSuccess, that.saveFail);
   }
 
   UpdateResourceItemModal.prototype.getUpdateModalTitleText = function(){
@@ -33,7 +33,7 @@ var UpdateResourceItemModal = function(){
 
   UpdateResourceItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
   }
 
 }

@@ -3,9 +3,10 @@ var PeriodDetailInformationArea = function(selectedPeriodId, crudItemRetriever){
    var that = this;
    this.periodId = selectedPeriodId;
    this.crudItemRetrieverObj = crudItemRetriever;
+   this.utils = new Utils();
 
    this.retrieveAndBindPeriodData = function(){
-     that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/period/", that.periodId, that.periodDataRetrieved);
+     that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/period/", that.periodId, that.periodDataRetrieved);
    }
 
    this.periodDataRetrieved = function(retrievedPeriod){

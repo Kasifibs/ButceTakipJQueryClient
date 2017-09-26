@@ -10,7 +10,7 @@ var UpdateResourceModal = function(moneyValuePreparatorObj){
   }
 
   UpdateResourceModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
-    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/varlik/varlik/", selectedItemId, that.fillModalWithCurrentCrudItem);
+    that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/varlik/varlik/", selectedItemId, that.fillModalWithCurrentCrudItem);
   }
 
   UpdateResourceModal.prototype.fillModalWithCurrentCrudItem = function(retrievedItem){
@@ -39,7 +39,7 @@ var UpdateResourceModal = function(moneyValuePreparatorObj){
                            "period":{"id":periodId},
                            "amount":that.moneyValuePreparator.prepareMoneyValue(amountInteger, amountDecimal)};;
 
-    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/varlik/guncelle", updatedResource, that.saveSuccess, that.saveFail);
+    that.updateCrudItemActionObj.updateCrudItem(that.utils.getServerBaseURL() + "/varlik/guncelle", updatedResource, that.saveSuccess, that.saveFail);
   }
 
   UpdateResourceModal.prototype.getUpdateModalTitleText = function(){
@@ -52,11 +52,11 @@ var UpdateResourceModal = function(moneyValuePreparatorObj){
 
   UpdateResourceModal.prototype.retrieveItemsToUpdateScreen = function(){
     var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlik/liste", resourceRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
   }
 
   this.retrieveResourceItemsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/varlikKalemi/liste", that.resourceItemsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", that.resourceItemsRetrieved);
   }
 
   this.resourceItemsRetrieved = function(resultData){
@@ -67,7 +67,7 @@ var UpdateResourceModal = function(moneyValuePreparatorObj){
   }
 
   this.retrievePeriodsToFillSelectInput = function(){
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", that.periodsRetrieved);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", that.periodsRetrieved);
   }
 
   this.periodsRetrieved = function(resultData){

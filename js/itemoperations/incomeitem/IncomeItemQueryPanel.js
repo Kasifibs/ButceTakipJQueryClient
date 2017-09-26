@@ -19,6 +19,6 @@ var IncomeItemQueryPanel = function(){
     var queryParams = {"name":name};
 
     var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias("https://localhost:8443/ButceTakipServer/gelirKalemi/sorgula", queryParams, incomeItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/gelirKalemi/sorgula", queryParams, incomeItemRetrieveHandlerOperation);
   }
 }

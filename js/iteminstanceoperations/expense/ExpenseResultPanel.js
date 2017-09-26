@@ -10,7 +10,7 @@ var ExpenseResultPanel = function(moneyValuePreparatorObj){
           $("#crudItemResultTableHeaderRow").append(data);
     });
     var expenseRetrieveHandlerOperation = expenseTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gider/liste", expenseRetrieveHandlerOperation);
+    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gider/liste", expenseRetrieveHandlerOperation);
   }
 
   ExpenseResultPanel.prototype.deleteCrudItemModalLoaded = function(){

@@ -11,7 +11,7 @@ var NewExpenseItemModal = function(){
     var name = $('#addExpenseItemNameTextField').val();
     var newExpenseItem = {"name":name};
 
-    that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/harcamaKalemi/kaydet", newExpenseItem, that.saveSuccess, that.saveFail);
+    that.saveCrudItemActionObj.saveCrudItem(that.utils.getServerBaseURL() + "/harcamaKalemi/kaydet", newExpenseItem, that.saveSuccess, that.saveFail);
   }
 
   NewExpenseItemModal.prototype.getSaveModalTitleText = function(){
@@ -24,7 +24,7 @@ var NewExpenseItemModal = function(){
 
   NewExpenseItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var expenseItemRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
   }
 
 }

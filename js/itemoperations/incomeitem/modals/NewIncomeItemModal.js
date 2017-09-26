@@ -11,7 +11,7 @@ var NewIncomeItemModal = function(){
     var name = $('#addIncomeItemNameTextField').val();
     var newIncomeItem = {"name":name};
 
-    that.saveCrudItemActionObj.saveCrudItem("https://localhost:8443/ButceTakipServer/gelirKalemi/kaydet", newIncomeItem, that.saveSuccess, that.saveFail);
+    that.saveCrudItemActionObj.saveCrudItem(that.utils.getServerBaseURL() + "/gelirKalemi/kaydet", newIncomeItem, that.saveSuccess, that.saveFail);
   }
 
   NewIncomeItemModal.prototype.getSaveModalTitleText = function(){
@@ -24,7 +24,7 @@ var NewIncomeItemModal = function(){
 
   NewIncomeItemModal.prototype.retrieveItemsToUpdateScreen = function(){
     var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
   }
 
 }

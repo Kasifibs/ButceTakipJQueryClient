@@ -9,7 +9,7 @@ var UpdatePeriodModal = function(moneyValuePreparatorObj){
   }
 
   UpdatePeriodModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
-    that.crudItemRetrieverObj.retrieveCrudItemById("https://localhost:8443/ButceTakipServer/period/", selectedItemId, that.fillModalWithCurrentCrudItem);
+    that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/period/", selectedItemId, that.fillModalWithCurrentCrudItem);
   }
 
   UpdatePeriodModal.prototype.fillModalWithCurrentCrudItem = function(retrievedPeriod){
@@ -46,7 +46,7 @@ var UpdatePeriodModal = function(moneyValuePreparatorObj){
       "beginAmount":that.moneyValuePreparator.prepareMoneyValue(beginAmountInteger, beginAmountDecimal)
     }
 
-    that.updateCrudItemActionObj.updateCrudItem("https://localhost:8443/ButceTakipServer/period/guncelle", updatedPeriod, that.saveSuccess, that.saveFail);
+    that.updateCrudItemActionObj.updateCrudItem(that.utils.getServerBaseURL() + "/period/guncelle", updatedPeriod, that.saveSuccess, that.saveFail);
   }
 
   UpdatePeriodModal.prototype.getUpdateModalTitleText = function(){
@@ -59,7 +59,7 @@ var UpdatePeriodModal = function(moneyValuePreparatorObj){
 
   UpdatePeriodModal.prototype.retrieveItemsToUpdateScreen = function(){
     var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems("https://localhost:8443/ButceTakipServer/period/liste", periodRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", periodRetrieveHandlerOperation);
   }
 
   this.initDatePickers = function(){
