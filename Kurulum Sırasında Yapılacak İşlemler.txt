@@ -1,0 +1,70 @@
+---Tomcat 8.0.36 versiyonunda denenmiştir---------
+
+
+1-) Client ve Server sürümleri ButceDedektifi klasörü
+altındaki sürümler klasörü altına yeni bir klasör oluşturularak
+kopyalanır.
+
+2-) Home dizini altında butceTakip.keystore dosyasının bulunduğu
+doğrulanır.
+
+3-) Tomcatin conf/server.xml dosyasında aşağıdaki tanımlamanın
+bulunduğu doğrulanır.
+
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+   maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+   clientAuth="false" sslProtocol="TLS" 
+keystoreFile="/home/ubuntu/butceTakip.keystore"
+keystorePass="takip.24.butce"/>
+
+4-) Tomcatin conf/web.xml dosyasında aşağıdaki tanımlamanın bulunduğu doğrulanır.
+
+<security-constraint>
+	<web-resource-collection>
+		<web-resource-name>securedapp</web-resource-name>
+		<url-pattern>/*</url-pattern>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+</security-constraint>
+
+5-) (Server ve client ayrı olacaksa)Tomcatin conf/web.xml dosyasında aşağıdaki tanımlamanın bulunduğu doğrulanır.
+
+<filter>
+  <filter-name>CorsFilter</filter-name>
+  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+  <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,HEAD,OPTIONS,PUT, DELETE</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.headers</param-name>
+    <param-value>Access-Control-Allow-Origin,Authorization,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.exposed.headers</param-name>
+    <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.support.credentials</param-name>
+    <param-value>true</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.preflight.maxage</param-name>
+    <param-value>10</param-value>
+  </init-param>
+</filter>
+<filter-mapping>
+  <filter-name>CorsFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+6-) Tomcat webapps klasörünün altına sürümler kopyalanır. Clinetın adının ButceTakip olması gerekir.
+
+7-) Tomcat başlatılırken catalina.sh, startup.sh ve shutdown.sh dosyaları executable 
+değilse chmod +x filename.sh komutu ile executable yapılır.
