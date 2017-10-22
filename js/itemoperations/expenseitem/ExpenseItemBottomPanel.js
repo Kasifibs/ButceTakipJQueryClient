@@ -1,5 +1,6 @@
 var ExpenseItemBottomPanel = function(){
 
+  var that = this;
   var newExpenseItemModalObj = new NewExpenseItemModal();
 
   ExpenseItemBottomPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
@@ -10,5 +11,9 @@ var ExpenseItemBottomPanel = function(){
 
   ExpenseItemBottomPanel.prototype.newCrudItemModalLoaded = function(){
     newExpenseItemModalObj.newCrudItemModalLoaded();
+  }
+
+  ExpenseItemBottomPanel.prototype.registerForItemAdditionEvent = function(){
+    newExpenseItemModalObj.addNewItemAddedListeners(that);
   }
 }

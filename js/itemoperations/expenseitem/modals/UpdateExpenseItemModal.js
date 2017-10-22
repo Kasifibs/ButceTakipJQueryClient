@@ -1,7 +1,6 @@
 var UpdateExpenseItemModal = function(){
 
   var that = this;
-  var expenseItemTableGeneratorObj = new ExpenseItemTableGenerator();
 
   UpdateExpenseItemModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
     that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/harcamaKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
@@ -29,11 +28,6 @@ var UpdateExpenseItemModal = function(){
 
   UpdateExpenseItemModal.prototype.getUpdateSuccessMessage = function(){
     return "Gider kalemi başarıyla güncellendi!";
-  }
-
-  UpdateExpenseItemModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var expenseItemRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
   }
 
 }

@@ -5,6 +5,7 @@ var NewCrudItemModal = function(){
   this.crudItemRetrieverObj = new CrudItemRetriever();
   this.saveCrudItemActionObj = new SaveCrudItemAction();
   this.utils = new Utils();
+  this.newItemAddedListeners = [];
 
   this.newCrudItemModalLoaded = function(){
     $("#saveNewCrudItemActionButton").click(that.saveCrudItem);
@@ -42,10 +43,6 @@ var NewCrudItemModal = function(){
     alert("Override this function-NewCrudItemModal.getSaveSuccessMessage");
   }
 
-  this.retrieveItemsToUpdateScreen = function(){
-    alert("Override this function! - NewCrudItemModal.retrieveItemsToUpdateScreen");
-  }
-
   this.saveSuccess = function(){
     $("#newCrudItemModal").modal("hide");
     that.saveCounter = that.saveCounter + 1;
@@ -56,8 +53,19 @@ var NewCrudItemModal = function(){
         $('#specificSaveAlertText').attr('id','specificSaveAlertText'+that.saveCounter);
     });
 
-    that.retrieveItemsToUpdateScreen();
+    that.notifyNewItemAddedListeners();
   };
 
   this.saveFail = function(){};
+
+  this.addNewItemAddedListeners = function(aNewItemAddedListener){
+    that.newItemAddedListeners.push(aNewItemAddedListener);
+  }
+
+  this.notifyNewItemAddedListeners = function(){
+    var newItemAddedListenersSize = that.newItemAddedListeners.length;
+    for (var i = 0; i < newItemAddedListenersSize; i++) {
+      that.newItemAddedListeners[i].newItemAdded();
+    }
+  }
 }

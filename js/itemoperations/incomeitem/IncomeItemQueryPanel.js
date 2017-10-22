@@ -18,7 +18,10 @@ var IncomeItemQueryPanel = function(){
 
     var queryParams = {"name":name};
 
-    var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/gelirKalemi/sorgula", queryParams, incomeItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveUsingCriteriasWithPagination(that.utils.getServerBaseURL() + "/gelirKalemi/sorgula", queryParams, that.currentPage, that.itemRetrieveHandlerOperation);
+  }
+
+  IncomeItemQueryPanel.prototype.performTableGeneration = function(resultData){
+    incomeItemTableGeneratorObj.generateCrudItemTableFromResultData(resultData);
   }
 }

@@ -2,7 +2,6 @@ var UpdateExpenseModal = function(moneyValuePreparatorObj){
 
   var that = this;
   this.moneyValuePreparator = moneyValuePreparatorObj;
-  var expenseTableGeneratorObj = new ExpenseTableGenerator();
 
   UpdateExpenseModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.retrieveExpenseItemsToFillSelectInput();
@@ -48,11 +47,6 @@ var UpdateExpenseModal = function(moneyValuePreparatorObj){
 
   UpdateExpenseModal.prototype.getUpdateSuccessMessage = function(){
     return "Gider başarıyla güncellendi!";
-  }
-
-  UpdateExpenseModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var expenseRetrieveHandlerOperation = expenseTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gider/liste", expenseRetrieveHandlerOperation);
   }
 
   this.retrieveExpenseItemsToFillSelectInput = function(){

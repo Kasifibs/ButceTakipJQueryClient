@@ -1,7 +1,6 @@
 var ResourceResultPanel = function(moneyValuePreparatorObj){
 
   var that = this;
-  var resourceTableGeneratorObj = new ResourceTableGenerator();
   var deleteResourceModalObj = new DeleteResourceModal();
   var updateResourceModalObj = new UpdateResourceModal(moneyValuePreparatorObj);
 
@@ -9,8 +8,6 @@ var ResourceResultPanel = function(moneyValuePreparatorObj){
     $.get("/ButceTakip/views/iteminstanceoperations/resource/ResourceResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-    var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
   }
 
   ResourceResultPanel.prototype.deleteCrudItemModalLoaded = function(){
@@ -19,5 +16,9 @@ var ResourceResultPanel = function(moneyValuePreparatorObj){
 
   ResourceResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateResourceModalObj.updateCrudItemModalLoaded();
+  }
+
+  ResourceResultPanel.prototype.registerForItemUpdateEvent = function(){
+    updateResourceModalObj.addItemUpdatedListener(that);
   }
 }

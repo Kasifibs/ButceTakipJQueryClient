@@ -1,5 +1,6 @@
 var PeriodBottomPanel = function(moneyValuePreparator){
 
+  var that = this;
   var newPeriodModalObj = new NewPeriodModal(moneyValuePreparator);
 
   PeriodBottomPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
@@ -10,5 +11,9 @@ var PeriodBottomPanel = function(moneyValuePreparator){
 
   PeriodBottomPanel.prototype.newCrudItemModalLoaded = function(){
     newPeriodModalObj.newCrudItemModalLoaded();
+  }
+
+  PeriodBottomPanel.prototype.registerForItemAdditionEvent = function(){
+    newPeriodModalObj.addNewItemAddedListeners(that);
   }
 }

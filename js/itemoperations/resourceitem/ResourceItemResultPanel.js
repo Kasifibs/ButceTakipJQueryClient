@@ -1,7 +1,6 @@
 var ResourceItemResultPanel = function(){
 
     var that = this;
-    var resourceItemTableGeneratorObj = new ResourceItemTableGenerator();
     var deleteResourceItemModalObj = new DeleteResourceItemModal();
     var updateResourceItemModalObj = new UpdateResourceItemModal();
 
@@ -9,9 +8,6 @@ var ResourceItemResultPanel = function(){
     $.get("/ButceTakip/views/itemoperations/resourceitem/ResourceItemResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-
-    var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
   }
 
   ResourceItemResultPanel.prototype.deleteCrudItemModalLoaded = function(){
@@ -20,5 +16,9 @@ var ResourceItemResultPanel = function(){
 
   ResourceItemResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateResourceItemModalObj.updateCrudItemModalLoaded();
+  }
+
+  ResourceItemResultPanel.prototype.registerForItemUpdateEvent = function(){
+    updateResourceItemModalObj.addItemUpdatedListener(that);
   }
 }

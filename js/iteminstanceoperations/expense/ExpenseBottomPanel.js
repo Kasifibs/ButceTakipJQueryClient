@@ -13,4 +13,8 @@ var ExpenseBottomPanel = function(moneyValuePreparator){
     newExpenseModalObj.newCrudItemModalLoaded();
   }
 
+  ExpenseBottomPanel.prototype.registerForItemAdditionEvent = function(){
+    newExpenseModalObj.addNewItemAddedListeners(that);
+  }
+
 }

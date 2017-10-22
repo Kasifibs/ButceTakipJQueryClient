@@ -13,4 +13,8 @@ var ResourceBottomPanel = function(moneyValuePreparator){
     newResourceModalObj.newCrudItemModalLoaded();
   }
 
+  ResourceBottomPanel.prototype.registerForItemAdditionEvent = function(){
+    newResourceModalObj.addNewItemAddedListeners(that);
+  }
+
 }

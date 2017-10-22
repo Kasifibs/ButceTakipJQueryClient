@@ -1,7 +1,6 @@
 var UpdateResourceItemModal = function(){
 
   var that = this;
-  var resourceItemTableGeneratorObj = new ResourceItemTableGenerator();
 
   UpdateResourceItemModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
     that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/varlikKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
@@ -29,11 +28,6 @@ var UpdateResourceItemModal = function(){
 
   UpdateResourceItemModal.prototype.getUpdateSuccessMessage = function(){
     return "Varlık kalemi başarıyla güncellendi!";
-  }
-
-  UpdateResourceItemModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
   }
 
 }

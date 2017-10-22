@@ -2,7 +2,6 @@ var UpdateResourceModal = function(moneyValuePreparatorObj){
 
   var that = this;
   this.moneyValuePreparator = moneyValuePreparatorObj;
-  var resourceTableGeneratorObj = new ResourceTableGenerator();
 
   UpdateResourceModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.retrieveResourceItemsToFillSelectInput();
@@ -48,11 +47,6 @@ var UpdateResourceModal = function(moneyValuePreparatorObj){
 
   UpdateResourceModal.prototype.getUpdateSuccessMessage = function(){
     return "Varlık başarıyla güncellendi!";
-  }
-
-  UpdateResourceModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
   }
 
   this.retrieveResourceItemsToFillSelectInput = function(){

@@ -1,7 +1,6 @@
 var NewIncomeItemModal = function(){
 
   var that = this;
-  var incomeItemTableGeneratorObj = new IncomeItemTableGenerator();
 
   NewIncomeItemModal.prototype.getItemTypeSpecificFormUrl = function(){
     return "/ButceTakip/views/itemoperations/incomeitem/modals/NewIncomeItemModal.html";
@@ -20,11 +19,6 @@ var NewIncomeItemModal = function(){
 
   NewIncomeItemModal.prototype.getSaveSuccessMessage = function(){
     return "Gelir kalemi başarıyla eklendi!";
-  }
-
-  NewIncomeItemModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
   }
 
 }

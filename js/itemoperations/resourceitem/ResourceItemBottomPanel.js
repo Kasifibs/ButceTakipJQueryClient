@@ -1,5 +1,6 @@
 var ResourceItemBottomPanel = function(){
 
+  var that = this;
   var newResourceItemModalObj = new NewResourceItemModal();
 
   ResourceItemBottomPanel.prototype.loadCrudItemSpecificCriteriasDiv = function(){
@@ -10,5 +11,9 @@ var ResourceItemBottomPanel = function(){
 
   ResourceItemBottomPanel.prototype.newCrudItemModalLoaded = function(){
     newResourceItemModalObj.newCrudItemModalLoaded();
+  }
+
+  ResourceItemBottomPanel.prototype.registerForItemAdditionEvent = function(){
+    newResourceItemModalObj.addNewItemAddedListeners(that);
   }
 }

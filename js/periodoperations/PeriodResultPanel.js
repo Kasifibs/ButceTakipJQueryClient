@@ -1,7 +1,6 @@
 var PeriodResultPanel = function(moneyValuePreparator){
 
     var that = this;
-    var periodTableGeneratorObj = new PeriodTableGenerator();
     var deletePeriodModalObj = new DeletePeriodModal();
     var updatePeriodModalObj = new UpdatePeriodModal(moneyValuePreparator);
 
@@ -9,9 +8,6 @@ var PeriodResultPanel = function(moneyValuePreparator){
     $.get("/ButceTakip/views/periodoperations/PeriodResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", periodRetrieveHandlerOperation);
   }
 
   PeriodResultPanel.prototype.deleteCrudItemModalLoaded = function(){
@@ -20,5 +16,9 @@ var PeriodResultPanel = function(moneyValuePreparator){
 
   PeriodResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updatePeriodModalObj.updateCrudItemModalLoaded();
+  }
+
+  PeriodResultPanel.prototype.registerForItemUpdateEvent = function(){
+    updatePeriodModalObj.addItemUpdatedListener(that);
   }
 }

@@ -28,9 +28,11 @@ var PeriodQueryPanel = function(){
                        "minEndDate":that.getFormattedDate(minEndDate),
                        "maxEndDate":that.getFormattedDate(maxEndDate)};
 
+    that.crudItemRetrieverObj.retrieveUsingCriteriasWithPagination(that.utils.getServerBaseURL() + "/period/sorgula", queryParams, that.currentPage, that.itemRetrieveHandlerOperation);
+  }
 
-    var periodItemRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/period/sorgula", queryParams, periodItemRetrieveHandlerOperation);
+  PeriodQueryPanel.prototype.performTableGeneration = function(resultData){
+    periodTableGeneratorObj.generateCrudItemTableFromResultData(resultData);
   }
 
   this.getFormattedDate = function(date){

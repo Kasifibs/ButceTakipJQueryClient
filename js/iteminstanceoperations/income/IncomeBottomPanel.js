@@ -13,4 +13,8 @@ var IncomeBottomPanel = function(moneyValuePreparator){
     newIncomeModalObj.newCrudItemModalLoaded();
   }
 
+  IncomeBottomPanel.prototype.registerForItemAdditionEvent = function(){
+    newIncomeModalObj.addNewItemAddedListeners(that);
+  }
+
 }

@@ -31,8 +31,11 @@ var ResourceQueryPanel = function(moneyValuePreparatorObj){
                        "minAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMinInteger, miktarMinDecimal),
                        "maxAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMaxInteger, miktarMaxDecimal)};
 
-     var resourceRetrieveHandlerOperation = resourceTableGenerator.generateCrudItemTableFromResultData;
-     that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/varlik/sorgula", queryParams, resourceRetrieveHandlerOperation);
+     that.crudItemRetrieverObj.retrieveUsingCriteriasWithPagination(that.utils.getServerBaseURL() + "/varlik/sorgula", queryParams, that.currentPage, that.itemRetrieveHandlerOperation);
+  }
+
+  ResourceQueryPanel.prototype.performTableGeneration = function(resultData){
+    resourceTableGenerator.generateCrudItemTableFromResultData(resultData);
   }
 
   this.retrieveResourceItemsToFillSelectInput = function(){

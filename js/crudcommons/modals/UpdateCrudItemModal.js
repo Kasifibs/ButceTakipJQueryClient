@@ -6,6 +6,7 @@ var UpdateCrudItemModal = function(){
   this.crudItemRetrieverObj = new CrudItemRetriever();
   this.updateCrudItemActionObj = new UpdateCrudItemAction();
   this.utils = new Utils();
+  this.itemUpdatedListeners = [];
 
   this.updateCrudItemModalLoaded = function(){
 
@@ -50,10 +51,6 @@ var UpdateCrudItemModal = function(){
     alert("Override this function-UpdateCrudItemModal.getUpdateSuccessMessage");
   }
 
-  this.retrieveItemsToUpdateScreen = function(){
-    alert("Override this function! - UpdateCrudItemModal.retrieveItemsToUpdateScreen");
-  }
-
   this.saveSuccess = function(){
     $("#updateCrudItemModal").modal("hide");
 
@@ -63,8 +60,20 @@ var UpdateCrudItemModal = function(){
         $('#specificUpdateAlertText').attr('id','specificUpdateAlertTextForItem'+that.selectedItemId);
     });
 
-    that.retrieveItemsToUpdateScreen();
+    that.notifyItemUpdatedListeners();
   };
 
   this.saveFail = function(){};
+
+  this.addItemUpdatedListener = function(newItemUpdatedListener){
+    that.itemUpdatedListeners.push(newItemUpdatedListener);
+  }
+
+  this.notifyItemUpdatedListeners = function(){
+    var itemUpdatedListenersSize = that.itemUpdatedListeners.length;
+    for (var i = 0; i < itemUpdatedListenersSize; i++) {
+      that.itemUpdatedListeners[i].itemUpdated();
+    }
+  }
+
 }

@@ -1,7 +1,6 @@
 var ExpenseItemResultPanel = function(){
 
     var that = this;
-    var expenseItemTableGeneratorObj = new ExpenseItemTableGenerator();
     var deleteExpenseItemModalObj = new DeleteExpenseItemModal();
     var updateExpenseItemModalObj = new UpdateExpenseItemModal();
 
@@ -9,9 +8,6 @@ var ExpenseItemResultPanel = function(){
     $.get("/ButceTakip/views/itemoperations/expenseitem/ExpenseItemResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-
-    var expenseItemRetrieveHandlerOperation = expenseItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/harcamaKalemi/liste", expenseItemRetrieveHandlerOperation);
   }
 
   ExpenseItemResultPanel.prototype.deleteCrudItemModalLoaded = function(){
@@ -20,5 +16,9 @@ var ExpenseItemResultPanel = function(){
 
   ExpenseItemResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateExpenseItemModalObj.updateCrudItemModalLoaded();
+  }
+
+  ExpenseItemResultPanel.prototype.registerForItemUpdateEvent = function(){
+    updateExpenseItemModalObj.addItemUpdatedListener(that);
   }
 }

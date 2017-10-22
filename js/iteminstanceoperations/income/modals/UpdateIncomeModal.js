@@ -2,7 +2,6 @@ var UpdateIncomeModal = function(moneyValuePreparatorObj){
 
   var that = this;
   this.moneyValuePreparator = moneyValuePreparatorObj;
-  var incomeTableGeneratorObj = new IncomeTableGenerator();
 
   UpdateIncomeModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.retrieveIncomeItemsToFillSelectInput();
@@ -48,11 +47,6 @@ var UpdateIncomeModal = function(moneyValuePreparatorObj){
 
   UpdateIncomeModal.prototype.getUpdateSuccessMessage = function(){
     return "Gelir başarıyla güncellendi!";
-  }
-
-  UpdateIncomeModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var incomeRetrieveHandlerOperation = incomeTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelir/liste", incomeRetrieveHandlerOperation);
   }
 
   this.retrieveIncomeItemsToFillSelectInput = function(){

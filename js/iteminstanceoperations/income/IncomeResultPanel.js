@@ -1,7 +1,6 @@
 var IncomeResultPanel = function(moneyValuePreparatorObj){
 
   var that = this;
-  var incomeTableGeneratorObj = new IncomeTableGenerator();
   var deleteIncomeModalObj = new DeleteIncomeModal();
   var updateIncomeModalObj = new UpdateIncomeModal(moneyValuePreparatorObj);
 
@@ -9,8 +8,6 @@ var IncomeResultPanel = function(moneyValuePreparatorObj){
     $.get("/ButceTakip/views/iteminstanceoperations/income/IncomeResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-    var incomeRetrieveHandlerOperation = incomeTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelir/liste", incomeRetrieveHandlerOperation);
   }
 
   IncomeResultPanel.prototype.deleteCrudItemModalLoaded = function(){
@@ -19,5 +16,9 @@ var IncomeResultPanel = function(moneyValuePreparatorObj){
 
   IncomeResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateIncomeModalObj.updateCrudItemModalLoaded();
+  }
+
+  IncomeResultPanel.prototype.registerForItemUpdateEvent = function(){
+    updateIncomeModalObj.addItemUpdatedListener(that);
   }
 }

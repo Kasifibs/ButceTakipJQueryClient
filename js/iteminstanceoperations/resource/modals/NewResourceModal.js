@@ -2,7 +2,6 @@ var NewResourceModal = function(moneyValuePreparatorObj){
 
   var that = this;
   this.moneyValuePreparator = moneyValuePreparatorObj;
-  var resourceItemTableGeneratorObj = new ResourceTableGenerator();
 
   NewResourceModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.retrieveResourceItemsToFillSelectInput();
@@ -33,11 +32,6 @@ var NewResourceModal = function(moneyValuePreparatorObj){
 
   NewResourceModal.prototype.getSaveSuccessMessage = function(){
     return "Varlık başarıyla eklendi!";
-  }
-
-  NewResourceModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var resourceRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
   }
 
   this.retrieveResourceItemsToFillSelectInput = function(){

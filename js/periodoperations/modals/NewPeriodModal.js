@@ -2,7 +2,6 @@ var NewPeriodModal = function(moneyValuePreparatorObj){
 
   var that = this;
   this.moneyValuePreparator = moneyValuePreparatorObj;
-  var periodTableGeneratorObj = new PeriodTableGenerator();
 
   NewPeriodModal.prototype.performInitializationsIfNeededAfterModalLoaded = function(){
     that.initDatePickers();
@@ -36,11 +35,6 @@ var NewPeriodModal = function(moneyValuePreparatorObj){
 
   NewPeriodModal.prototype.getSaveSuccessMessage = function(){
     return "Dönem başarıyla eklendi!";
-  }
-
-  NewPeriodModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", periodRetrieveHandlerOperation);
   }
 
   this.initDatePickers = function(){

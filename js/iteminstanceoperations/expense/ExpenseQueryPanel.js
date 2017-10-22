@@ -32,8 +32,11 @@ var ExpenseQueryPanel = function(moneyValuePreparatorObj){
                        "minAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMinInteger, miktarMinDecimal),
                        "maxAmount":that.moneyValuePreparator.prepareMoneyValue(miktarMaxInteger, miktarMaxDecimal)};
 
-     var expenseRetrieveHandlerOperation = expenseTableGenerator.generateCrudItemTableFromResultData;
-     that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/gider/sorgula", queryParams, expenseRetrieveHandlerOperation);
+     that.crudItemRetrieverObj.retrieveUsingCriteriasWithPagination(that.utils.getServerBaseURL() + "/gider/sorgula", queryParams, that.currentPage, that.itemRetrieveHandlerOperation);
+  }
+
+  ExpenseQueryPanel.prototype.performTableGeneration = function(resultData){
+    expenseTableGenerator.generateCrudItemTableFromResultData(resultData);
   }
 
   this.retrieveExpenseItemsToFillSelectInput = function(){

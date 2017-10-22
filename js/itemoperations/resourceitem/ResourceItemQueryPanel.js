@@ -18,7 +18,10 @@ var ResourceItemQueryPanel = function(){
 
     var queryParams = {"name":name};
 
-    var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveUsingCriterias(that.utils.getServerBaseURL() + "/varlikKalemi/sorgula", queryParams, resourceItemRetrieveHandlerOperation);
+    that.crudItemRetrieverObj.retrieveUsingCriteriasWithPagination(that.utils.getServerBaseURL() + "/varlikKalemi/sorgula", queryParams, that.currentPage, that.itemRetrieveHandlerOperation);
+  }
+
+  ResourceItemQueryPanel.prototype.performTableGeneration = function(resultData){
+    resourceItemTableGeneratorObj.generateCrudItemTableFromResultData(resultData);
   }
 }

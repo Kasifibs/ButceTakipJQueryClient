@@ -1,7 +1,6 @@
 var IncomeItemResultPanel = function(){
 
     var that = this;
-    var incomeItemTableGeneratorObj = new IncomeItemTableGenerator();
     var deleteIncomeItemModalObj = new DeleteIncomeItemModal();
     var updateIncomeItemModalObj = new UpdateIncomeItemModal();
 
@@ -9,9 +8,6 @@ var IncomeItemResultPanel = function(){
     $.get("/ButceTakip/views/itemoperations/incomeitem/IncomeItemResultPanel.html", function(data){
           $("#crudItemResultTableHeaderRow").append(data);
     });
-
-    var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
   }
 
   IncomeItemResultPanel.prototype.deleteCrudItemModalLoaded = function(){
@@ -20,5 +16,9 @@ var IncomeItemResultPanel = function(){
 
   IncomeItemResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateIncomeItemModalObj.updateCrudItemModalLoaded();
+  }
+
+  IncomeItemResultPanel.prototype.registerForItemUpdateEvent = function(){
+    updateIncomeItemModalObj.addItemUpdatedListener(that);
   }
 }

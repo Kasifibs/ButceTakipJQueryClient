@@ -7,6 +7,11 @@ var CrudItemPageLoader = function(crudItemQueryPanel, crudItemResultPanel, crudI
   var crudItemResultPanelObj = crudItemResultPanel;
   var crudItemBottomPanelObj = crudItemBottomPanel;
 
+  crudItemResultPanelObj.addPageChangeListener(crudItemQueryPanelObj);
+  crudItemQueryPanelObj.addQueryResultChangedListener(crudItemResultPanelObj);
+  crudItemBottomPanelObj.addItemListChangedListener(crudItemQueryPanelObj);
+  crudItemResultPanelObj.addItemListChangedListener(crudItemQueryPanelObj);
+
   this.loadTemplates = function(){
 		$('body').load('/ButceTakip/views/common/MainTemplate.html', function(){mainTemplateObj.mainTemplateLoaded(that.loadCrudItemContentArea)});
 	}
@@ -19,20 +24,43 @@ var CrudItemPageLoader = function(crudItemQueryPanel, crudItemResultPanel, crudI
   }
 
   this.crudItemContentAreaLoaded = function(){
-    $.get("/ButceTakip/views/crudcommons/CrudItemQueryPanel.html", function(data){
-        $("#crudItemQueryDiv").append(data);
-        crudItemQueryPanelObj.crudItemQueryPanelLoaded();
-    });
+    that.loadCrudItemQueryPanel();
+    that.loadCrudItemResultPanel();
+    that.loadCrudItemBottomPanel();
 
-    $.get("/ButceTakip/views/crudcommons/CrudItemResultPanel.html", function(data){
-        $("#crudItemResultDiv").append(data);
-        crudItemResultPanelObj.crudItemResultPanelLoaded();
-    });
+    crudItemQueryPanelObj.queryButtonClicked();
+  }
 
-    $.get("/ButceTakip/views/crudcommons/CrudItemBottomPanel.html", function(data){
-        $("#crudItemBottomDiv").append(data);
-        crudItemBottomPanelObj.crudItemBottomPanelLoaded();
+  this.loadCrudItemQueryPanel = function(){
+    $.ajax({
+        url: "/ButceTakip/views/crudcommons/CrudItemQueryPanel.html",
+        success: function (data) {
+          $("#crudItemQueryDiv").append(data);
+          crudItemQueryPanelObj.crudItemQueryPanelLoaded();
+        },
+        async: false
     });
+  }
 
+  this.loadCrudItemResultPanel = function(){
+    $.ajax({
+        url: "/ButceTakip/views/crudcommons/CrudItemResultPanel.html",
+        success: function (data) {
+          $("#crudItemResultDiv").append(data);
+          crudItemResultPanelObj.crudItemResultPanelLoaded();
+        },
+        async: false
+    });
+  }
+
+  this.loadCrudItemBottomPanel = function(){
+    $.ajax({
+        url: "/ButceTakip/views/crudcommons/CrudItemBottomPanel.html",
+        success: function (data) {
+          $("#crudItemBottomDiv").append(data);
+          crudItemBottomPanelObj.crudItemBottomPanelLoaded();
+        },
+        async: false
+    });
   }
 }

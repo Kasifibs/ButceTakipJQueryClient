@@ -1,7 +1,6 @@
 var UpdateIncomeItemModal = function(){
 
   var that = this;
-  var incomeItemTableGeneratorObj = new IncomeItemTableGenerator();
 
   UpdateIncomeItemModal.prototype.retrieveSelectedCrudItem = function(selectedItemId){
     that.crudItemRetrieverObj.retrieveCrudItemById(that.utils.getServerBaseURL() + "/gelirKalemi/kalem/", selectedItemId, that.fillModalWithCurrentCrudItem);
@@ -29,11 +28,6 @@ var UpdateIncomeItemModal = function(){
 
   UpdateIncomeItemModal.prototype.getUpdateSuccessMessage = function(){
     return "Gelir kalemi başarıyla güncellendi!";
-  }
-
-  UpdateIncomeItemModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var incomeItemRetrieveHandlerOperation = incomeItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    that.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelirKalemi/liste", incomeItemRetrieveHandlerOperation);
   }
 
 }
