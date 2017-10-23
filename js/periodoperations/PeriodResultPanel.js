@@ -14,6 +14,10 @@ var PeriodResultPanel = function(moneyValuePreparator){
     deletePeriodModalObj.deleteCrudItemModalLoaded();
   }
 
+  PeriodResultPanel.prototype.registerForItemDeleteEvent = function(){
+    deletePeriodModalObj.addItemDeletedListener(that);
+  }
+
   PeriodResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updatePeriodModalObj.updateCrudItemModalLoaded();
   }

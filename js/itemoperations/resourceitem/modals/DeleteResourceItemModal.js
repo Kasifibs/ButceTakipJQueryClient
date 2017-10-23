@@ -1,7 +1,6 @@
 var DeleteResourceItemModal = function(){
 
   var that = this;
-  var resourceItemTableGeneratorObj = new ResourceItemTableGenerator();
 
   DeleteResourceItemModal.prototype.deleteItem = function(){
     that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/varlikKalemi/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
@@ -19,8 +18,4 @@ var DeleteResourceItemModal = function(){
     return "Varlık kalemi başarıyla silindi!";
   }
 
-  DeleteResourceItemModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var resourceItemRetrieveHandlerOperation = resourceItemTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlikKalemi/liste", resourceItemRetrieveHandlerOperation);
-  }
 }

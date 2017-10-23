@@ -20,11 +20,16 @@ var CrudItemResultPanel = function(){
     $.get("/ButceTakip/views/crudcommons/modals/DeleteCrudItemModal.html", function(data){
         $("#deleteCrudItemModalDiv").append(data);
         that.deleteCrudItemModalLoaded();
+        that.registerForItemDeleteEvent();
     });
   }
 
   this.deleteCrudItemModalLoaded = function(){
     alert("Override this function! - CrudItemResultPanel.deleteCrudItemModalLoaded ");
+  }
+
+  this.registerForItemDeleteEvent = function(){
+    alert("Override this function! - CrudItemResultPanel.registerForItemDeleteEvent ");
   }
 
   this.loadUpdateCrudItemModal = function(){
@@ -81,6 +86,10 @@ var CrudItemResultPanel = function(){
   }
 
   this.itemUpdated = function(){
+    that.notifyItemChangedListeners();
+  }
+
+  this.itemDeleted = function(){
     that.notifyItemChangedListeners();
   }
 }

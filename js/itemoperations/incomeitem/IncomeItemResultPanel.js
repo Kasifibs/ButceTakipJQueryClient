@@ -14,6 +14,10 @@ var IncomeItemResultPanel = function(){
     deleteIncomeItemModalObj.deleteCrudItemModalLoaded();
   }
 
+  IncomeItemResultPanel.prototype.registerForItemDeleteEvent = function(){
+    deleteIncomeItemModalObj.addItemDeletedListener(that);
+  }
+
   IncomeItemResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateIncomeItemModalObj.updateCrudItemModalLoaded();
   }

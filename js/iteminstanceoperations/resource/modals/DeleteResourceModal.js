@@ -1,6 +1,5 @@
 var DeleteResourceModal = function(){
   var that = this;
-  var resourceTableGeneratorObj = new ResourceTableGenerator();
 
   DeleteResourceModal.prototype.deleteItem = function(){
     that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/varlik/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
@@ -18,8 +17,4 @@ var DeleteResourceModal = function(){
     return "Varlık başarıyla silindi!";
   }
 
-  DeleteResourceModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var resourceRetrieveHandlerOperation = resourceTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/varlik/liste", resourceRetrieveHandlerOperation);
-  }
 }

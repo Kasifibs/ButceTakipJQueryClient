@@ -14,6 +14,10 @@ var ResourceItemResultPanel = function(){
     deleteResourceItemModalObj.deleteCrudItemModalLoaded();
   }
 
+  ResourceItemResultPanel.prototype.registerForItemDeleteEvent = function(){
+    deleteResourceItemModalObj.addItemDeletedListener(that);
+  }
+
   ResourceItemResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateResourceItemModalObj.updateCrudItemModalLoaded();
   }

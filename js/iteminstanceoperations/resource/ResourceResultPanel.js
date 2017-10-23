@@ -14,6 +14,10 @@ var ResourceResultPanel = function(moneyValuePreparatorObj){
     deleteResourceModalObj.deleteCrudItemModalLoaded();
   }
 
+  ResourceResultPanel.prototype.registerForItemDeleteEvent = function(){
+    deleteResourceModalObj.addItemDeletedListener(that);
+  }
+
   ResourceResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateResourceModalObj.updateCrudItemModalLoaded();
   }

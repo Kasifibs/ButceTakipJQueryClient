@@ -1,7 +1,6 @@
 var DeletePeriodModal = function(){
 
   var that = this;
-  var periodTableGeneratorObj = new PeriodTableGenerator();
 
   DeletePeriodModal.prototype.deleteItem = function(){
     that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/period/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
@@ -19,8 +18,4 @@ var DeletePeriodModal = function(){
     return "Dönem başarıyla silindi!";
   }
 
-  DeletePeriodModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var periodRetrieveHandlerOperation = periodTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/period/liste", periodRetrieveHandlerOperation);
-  }
 }

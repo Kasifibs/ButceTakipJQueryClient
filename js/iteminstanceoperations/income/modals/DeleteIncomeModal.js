@@ -1,7 +1,6 @@
 var DeleteIncomeModal = function(){
 
   var that = this;
-  var incomeTableGeneratorObj = new IncomeTableGenerator();
 
   DeleteIncomeModal.prototype.deleteItem = function(){
     that.deleteCrudItemActionObj.deleteCrudItem(that.utils.getServerBaseURL() + "/gelir/sil/"+that.selectedItemId, that.deleteSuccess, that.deleteFail);
@@ -19,8 +18,4 @@ var DeleteIncomeModal = function(){
     return "Gelir başarıyla silindi!";
   }
 
-  DeleteIncomeModal.prototype.retrieveItemsToUpdateScreen = function(){
-    var incomeRetrieveHandlerOperation = incomeTableGeneratorObj.generateCrudItemTableFromResultData;
-    this.crudItemRetrieverObj.retrieveAllCrudItems(that.utils.getServerBaseURL() + "/gelir/liste", incomeRetrieveHandlerOperation);
-  }
 }

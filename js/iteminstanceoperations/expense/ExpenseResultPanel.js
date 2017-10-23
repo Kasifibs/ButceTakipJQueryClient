@@ -14,6 +14,10 @@ var ExpenseResultPanel = function(moneyValuePreparatorObj){
     deleteExpenseModalObj.deleteCrudItemModalLoaded();
   }
 
+  ExpenseResultPanel.prototype.registerForItemDeleteEvent = function(){
+    deleteExpenseModalObj.addItemDeletedListener(that);
+  }
+
   ExpenseResultPanel.prototype.updateCrudItemModalLoaded = function(){
     updateExpenseModalObj.updateCrudItemModalLoaded();
   }

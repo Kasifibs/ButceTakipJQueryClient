@@ -5,6 +5,7 @@ var DeleteCrudItemModal = function(){
     this.crudItemRetrieverObj = new CrudItemRetriever();
     this.deleteCrudItemActionObj = new DeleteCrudItemAction();
     this.utils = new Utils();
+    this.itemDeletedListeners = [];
 
     this.deleteCrudItemModalLoaded = function(){
       $('#deleteCrudItemModalActionButton').click(that.deleteItem);
@@ -36,10 +37,6 @@ var DeleteCrudItemModal = function(){
       alert("Override this function! - DeleteCrudItemModal.getDeleteSuccessMessage");
     }
 
-    this.retrieveItemsToUpdateScreen = function(){
-      alert("Override this function! - DeleteCrudItemModal.retrieveItemsToUpdateScreen");
-    }
-
     this.deleteSuccess = function(){
       $("#deleteCrudItemModal").modal("hide");
 
@@ -49,8 +46,19 @@ var DeleteCrudItemModal = function(){
            $('#specificDeleteAlertText').attr('id','specificDeleteAlertText'+that.selectedItemId);
       });
 
-      that.retrieveItemsToUpdateScreen();
+      that.notifyItemDeletedListeners();
     };
 
     this.deleteFail = function(){};
+
+    this.addItemDeletedListener = function(newItemDeletedListener){
+      that.itemDeletedListeners.push(newItemDeletedListener);
+    }
+
+    this.notifyItemDeletedListeners = function(){
+      var itemDeletedListenersSize = that.itemDeletedListeners.length;
+      for (var i = 0; i < itemDeletedListenersSize; i++) {
+        that.itemDeletedListeners[i].itemDeleted();
+      }
+    }
 }
