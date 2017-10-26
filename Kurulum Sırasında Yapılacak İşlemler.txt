@@ -68,3 +68,5 @@ keystorePass="takip.24.butce"/>
 
 7-) Tomcat başlatılırken catalina.sh, startup.sh ve shutdown.sh dosyaları executable 
 değilse chmod +x filename.sh komutu ile executable yapılır.
+
+8-) Veritabanı değişiklikleri varsa uygulanır.
